@@ -1,1 +1,118 @@
-<p>register works!</p>
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="flex w-full max-w-4xl">
+    <div class="bg-white p-8 rounded shadow-md w-1/2">
+      <div class="w-1/6">
+        <img
+          src="../../assets/san-marco.jpg"
+          alt="Descriptive Alt Text"
+          class="object-cover h-full w-full rounded-r"
+        />
+      </div>
+
+      <h1 class="text-2xl font-bold mb-4">Create an account</h1>
+
+      <h3 class="text-lg font-bold mb-4">
+        Sign up now and unlock exclusive access!
+      </h3>
+
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="mb-4">
+          <label
+            for="username"
+            class="block text-gray-700"
+            >Username</label
+          >
+          <input
+            type="text"
+            id="username"
+            formControlName="username"
+            class="mt-1 p-2 w-full border rounded"
+          />
+          <div
+            *ngIf="
+              registerForm.get('username')?.invalid &&
+              registerForm.get('username')?.touched
+            "
+            class="text-red-500 text-xs italic"
+          >
+            Username is required and must be at least 4 characters long.
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700"
+            >Email</label
+          >
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="mt-1 p-2 w-full border rounded"
+          />
+          <div
+            *ngIf="
+              registerForm.get('email')?.invalid &&
+              registerForm.get('email')?.touched
+            "
+            class="text-red-500 text-xs italic"
+          >
+            Please enter a valid email address.
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <label
+            for="password"
+            class="block text-gray-700"
+            >Password</label
+          >
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            class="mt-1 p-2 w-full border rounded"
+          />
+          <div
+            *ngIf="
+              registerForm.get('password')?.invalid &&
+              registerForm.get('password')?.touched
+            "
+            class="text-red-500 text-xs italic"
+          >
+            Password is required and must be at least 6 characters long.
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <button
+            type="submit"
+            class="w-full bg-blue-500 text-white p-2 rounded"
+            [disabled]="!registerForm.valid"
+          >
+            Register
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-4">
+        <a routerLink="/auth/login" class="text-blue-500"
+          >Have an account? Login Now</a
+        >
+      </div>
+
+      <h4 class="text-sm mt-4">hcd&#64;message.com</h4>
+    </div>
+
+    <div class="w-1/2">
+      <img
+        src="../../assets/san-marco.jpg"
+        alt="Descriptive Alt Text"
+        class="object-cover h-full w-full rounded-r"
+      />
+    </div>
+  </div>
+  <div *ngIf="error" class="text-red-500 text-xs italic">{{ error }}</div>
+</div>

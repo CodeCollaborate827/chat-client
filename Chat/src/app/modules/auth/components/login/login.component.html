@@ -1,1 +1,40 @@
-<p>login works!</p>
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="flex w-full max-w-4xl">
+    <!-- Form Container -->
+    <div class="bg-white p-8 rounded shadow-md w-1/2">
+      <div class="w-1/6">
+        <img src="../../assets/san-marco.jpg" alt="Descriptive Alt Text" class="object-cover h-full w-full rounded-r">
+      </div>
+
+      <h1 class="text-2xl font-bold mb-4">Create an account</h1>
+
+      <div *ngIf="error" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+        <p>{{ error }}</p>
+      </div>
+
+      <h3 class="text-lg font-bold mb-4">Sign up now and unlock exclusive access!</h3>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label for="username" class="block text-gray-700">Username:</label>
+          <input id="username" formControlName="username" class="mt-1 p-2 w-full border rounded" />
+        </div>
+        <div class="mb-4">
+          <label for="password" class="block text-gray-700">Password:</label>
+          <input id="password" type="password" formControlName="password" class="mt-1 p-2 w-full border rounded" />
+        </div>
+        <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Login</button>
+      </form>
+
+      <div class="mt-4">
+        <a routerLink="/auth/register" class="text-blue-500">Don't have an account? Register now!</a>
+      </div>
+
+      <h4 class="text-sm mt-4">hcd&#64;message.com</h4>
+    </div>
+    <!-- Image Container -->
+    <div class="w-1/2">
+      <img src="../../assets/san-marco.jpg" alt="Descriptive Alt Text" class="object-cover h-full w-full rounded-r">
+    </div>
+  </div>
+</div>
