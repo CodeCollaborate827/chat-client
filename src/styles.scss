@@ -35,8 +35,26 @@ $Chat-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+  height: 100%; 
+}
+body { 
+  margin: auto; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  font-size: 14px;
+  line-height: 20px;
+  color: #e4e6eb;
+}
+
+@import "./app/common/styles/button.scss";
+@import "./app/common/styles/text.scss";
+@import "./app/common/styles/loading.scss";
+:root {
+  --color-primary: #25b09b;
+  --color-secondary: blue;
+}
+
+
 
 @tailwind base;
 @tailwind components;
