@@ -1,0 +1,16 @@
+:host {
+    .friend-list-container {
+        background-color: rgb(85 76 76 / 40%);
+        height: calc(100vh - 32px);
+    }
+    
+    .friend-messages {
+        height: calc(100vh - 260px);
+    }
+
+    .message-badge {
+        background-color: var(--color-primary);  
+        width: 22px;
+        height: 22px;      
+    }
+}

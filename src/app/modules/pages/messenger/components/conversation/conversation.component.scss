@@ -1,0 +1,59 @@
+:host {
+    .conversation-container {
+        background-color: rgb(85 76 76 / 40%);
+        height: calc(100vh - 32px);
+
+        .conversation-top {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .message-container {
+            .message {
+                display: flex;
+            }
+
+            .message-content {
+                width: fit-content;
+                padding: 10px 14px;
+                background-color: var(--color-primary);
+                margin-top: 2px;
+            }
+
+            .own {
+                justify-content: flex-end !important;
+
+                .first-message {
+                    border-radius: 20px 20px 2px 20px !important;
+                }
+
+                .middle-message {
+                    border-radius: 20px 2px 2px 20px !important;
+                }
+
+                .last-message {
+                    border-radius: 20px 2px 20px 20px !important;
+                }
+            }
+
+            .not-last-message {
+                margin-left: 58px;
+            }
+
+            .first-message {
+                border-radius: 20px 20px 20px 2px;
+            }
+
+            .middle-message {
+                border-radius: 2px 20px 20px 2px
+            }
+
+            .last-message {
+                border-radius: 2px 20px 20px 20px;
+            }
+
+            .single-message {
+                border-radius: 20px;
+            }
+        }
+    }
+}
