@@ -51,6 +51,10 @@ export class ConversationComponent implements OnInit, OnDestroy{
       content: 'ừ chắc thế :v',
       own: true,
     },
+    {
+      content: 'sau di du thuyen cho t di ke voi nha :v',
+      own: true,
+    },
   ]
 
   constructor() {

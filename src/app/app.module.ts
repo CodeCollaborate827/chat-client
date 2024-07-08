@@ -11,10 +11,11 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core';
 import { LoginComponent } from './modules/auth/components/login/login.component';
+import { LayoutComponent } from './modules/layout/layout.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
