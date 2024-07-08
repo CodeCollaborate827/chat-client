@@ -57,11 +57,13 @@ body {
 @import "./app/common/styles/text.scss";
 @import "./app/common/styles/loading.scss";
 @import "./app/common/styles/icon.scss";
+@import "./app/common/styles/variables.scss";
 
-:root {
-  --color-primary: #25b09b;
-  --color-secondary: blue;
-}
+// :root {
+//   --color-primary: #0cbc7f;
+//   --color-secondary: blue;
+//   --color-primary-hover: #08895c;
+// }
 
 
 

@@ -1,1 +1,12 @@
-<p>confirm-dialog works!</p>
+<div class="dialog">
+  <div mat-dialog-title>{{ data.title }}</div>
+  <div mat-dialog-content>{{ data.message }}</div>
+  <div mat-dialog-actions>
+    <button type="button" [disabled]="isLoading" (click)="onCancel()">
+      No
+    </button>
+    <button type="button" [disabled]="isLoading" (click)="onConfirm()">
+      Yes
+    </button>
+  </div>
+</div>
