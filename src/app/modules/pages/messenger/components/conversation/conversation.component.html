@@ -1,4 +1,4 @@
-<div class="conversation-container my-4 rounded-md">
+<div class="conversation-container card relative">
     <div class="flex flex-col h-full">
         <div class="conversation-top flex items-center justify-between top-4">
             <div class="conversation-info flex items-center m-3">
@@ -10,20 +10,16 @@
                     <span>Active now</span>
                 </div>
             </div>
-            <div class="conversation-options">
-                <button mat-icon-button class="mr-3">
-                    <mat-icon>close</mat-icon>
-                </button>
-                <button mat-icon-button class="mr-3">
-                    <mat-icon>close</mat-icon>
-                </button>
-                <button mat-icon-button class="mr-3">
-                    <mat-icon>close</mat-icon>
-                </button>
+            <div class="conversation-options flex items-center">
+                <mat-icon class="mr-3">close</mat-icon>
+            
+                <mat-icon class="mr-3">close</mat-icon>
+            
+                <mat-icon class="mr-3">close</mat-icon>
             </div>
         </div>
 
-        <div class="m-3">
+        <div class="m-3" style="margin-bottom: 62px;">
             <div class="message-container overflow-y-scroll my-3">
                 <div class="message" *ngFor="let message of messages" [class.own]="message.own">
                     <div *ngIf="message.user && ['last', 'single'].includes(getMessageOrder(message))" class="mr-2">
@@ -44,31 +40,19 @@
             </div>
         </div>
 
-        <div class="m-3 bottom-0">
+        <div class="conversation-chat absolute bottom-0 left-0">
             <div class="my-3 flex items center">
-                <button mat-icon-button class="mr-3">
-                    <mat-icon>close</mat-icon>
-                </button>
-                <button mat-icon-button class="mr-3">
-                    <mat-icon>add_to_photos</mat-icon>
-                </button>
-                <button mat-icon-button class="mr-3">
-                    <mat-icon>attach_file</mat-icon>
-                </button>
-                <button mat-icon-button class="mr-3">
-                    <mat-icon>gif</mat-icon>
-                </button>
-                <div class="conversation-input w-full">
+                <mat-icon class="mr-3">close</mat-icon>
+                <mat-icon class="mr-3">add_to_photos</mat-icon>
+                <mat-icon class="mr-3">attach_file</mat-icon>
+                <mat-icon class="mr-3">gif</mat-icon>
+                <div class="conversation-input">
                     <mat-form-field class="w-full">
                         <input matInput type="text" placeholder="Aa">
-                        <button matSuffix mat-icon-button>
-                            <mat-icon>sentiment_satisfied_alt</mat-icon>
-                        </button>
+                            <mat-icon matSuffix>sentiment_satisfied_alt</mat-icon>
                     </mat-form-field>
                 </div>
-                <button mat-icon-button class="mr-3">
-                    <mat-icon>thumb_up</mat-icon>
-                </button>
+                <mat-icon>thumb_up</mat-icon>
             </div>
         </div>
     </div>

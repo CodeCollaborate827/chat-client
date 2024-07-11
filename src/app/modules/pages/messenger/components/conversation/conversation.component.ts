@@ -77,7 +77,9 @@ export class ConversationComponent implements OnInit, OnDestroy{
     }
     const messageIndex = this.messages.indexOf(message);
     if (messageIndex == this.messages.length - 1) {
-      order = 'single';
+      if (this.messages[messageIndex].own == this.messages[messageIndex - 1].own)
+        order = 'last';
+      else order = 'single';
       return order;
     }
     if (messageIndex == 0) {

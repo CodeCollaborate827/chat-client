@@ -35,6 +35,12 @@ $Chat-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
+@import "./app/common/styles/button.scss";
+@import "./app/common/styles/text.scss";
+@import "./app/common/styles/loading.scss";
+@import "./app/common/styles/icon.scss";
+@import "./app/common/styles/variables.scss";
+
 html, body { 
   height: 100%; 
 }
@@ -43,7 +49,16 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
   font-size: 14px;
   line-height: 20px;
-  color: #e4e6eb;
+  font-weight: 400;
+  color: $color-text;
+  background-color: $color-background;
+}
+
+.card {
+  background-color: $color-card !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin: 12px 6px;
 }
 
 .avatar {
@@ -53,11 +68,15 @@ body {
   border-radius: 50%;
 }
 
-@import "./app/common/styles/button.scss";
-@import "./app/common/styles/text.scss";
-@import "./app/common/styles/loading.scss";
-@import "./app/common/styles/icon.scss";
-@import "./app/common/styles/variables.scss";
+.mat-icon {
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  cursor: pointer;
+}
+
 
 // :root {
 //   --color-primary: #0cbc7f;

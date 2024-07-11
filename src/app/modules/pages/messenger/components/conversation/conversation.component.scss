@@ -4,8 +4,10 @@
     .conversation-container {
         background-color: rgb(85 76 76 / 40%);
         height: calc(100vh - 32px);
+        flex: 1;
 
         .conversation-top {
+            height: 60px;
             border-bottom: 1px solid #ccc;
         }
 
@@ -56,6 +58,10 @@
             .single-message {
                 border-radius: 20px;
             }
+        }
+
+        .conversation-chat {
+            height: 40px;
         }
     }
 }
