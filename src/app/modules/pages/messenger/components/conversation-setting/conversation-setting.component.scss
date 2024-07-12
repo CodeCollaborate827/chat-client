@@ -1,0 +1,18 @@
+@import "../../../../../common/styles/variables.scss";
+
+
+:host {
+    .conversation-container {
+        height: calc(100vh - 32px);
+
+        .conversation-user {
+            position: relative;
+        }
+
+        .mat-icon-container {
+            position: absolute; 
+            top: 10%; 
+            right: -115%
+        }
+    }
+}
