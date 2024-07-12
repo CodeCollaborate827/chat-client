@@ -3,7 +3,7 @@
     <!-- profile -->
     <div class="p-4">
       <div class="flex items-center justify-between flex-col">
-        <div class="conversation-user" style="position: relative">
+        <div class="conversation-user">
           <div
             class="conversation-avatar w-16 h-16 rounded-full overflow-hidden items-center"
           >
@@ -15,7 +15,6 @@
 
             <div
               class="mat-icon-container"
-              style="position: absolute; top: 10%; right: -115%"
             >
               <mat-icon>more_vert</mat-icon>
             </div>
@@ -29,11 +28,11 @@
 
         <div class="conversation-method my-4">
           <div class="flex items-center ml-auto">
-            <button class="flex p-2 rounded-full hover:bg-gray-200 mr-2">
+            <button class="flex p-2 mr-2">
               <h5 class="mr-1">Voice chat</h5>
               <mat-icon> phone </mat-icon>
             </button>
-            <button class="flex p-2 rounded-full hover:bg-gray-200 mr-2">
+            <button class="flex p-2 mr-2">
               <h5 class="mr-1">Video chat</h5>
               <mat-icon> videocam </mat-icon>
             </button>
@@ -45,22 +44,22 @@
     <!-- function -->
     <div class="p-4">
       <div class="mb-4 flex justify-between">
-        <h4 class="font-semibold mb-1">Search in Conversation</h4>
+        <h4 class="mb-1">Search in Conversation</h4>
         <mat-icon>search</mat-icon>
       </div>
 
       <div class="mb-4 flex justify-between">
-        <h4 class="font-semibold mb-1">Change Color</h4>
+        <h4 class="mb-1">Change Color</h4>
         <mat-icon>palette</mat-icon>
       </div>
 
       <div class="mb-4 flex justify-between">
-        <h4 class="font-semibold mb-1">Change Emoji</h4>
+        <h4 class="mb-1">Change Emoji</h4>
         <mat-icon>emoji_emotions</mat-icon>
       </div>
 
       <div class="mb-4 flex justify-between">
-        <h4 class="font-semibold mb-1">Links</h4>
+        <h4 class="mb-1">Links</h4>
         <mat-icon>link</mat-icon>
       </div>
     </div>
@@ -68,13 +67,13 @@
     <!-- storage -->
     <div class="p-4">
       <div class="mb-4 flex justify-between">
-        <h4 class="font-semibold mb-1">Shared Photos</h4>
+        <h4 class="mb-1">Shared Photos</h4>
         <mat-icon>photo</mat-icon>
       </div>
     </div>
 
     <div class="p-4">
-      <h4 class="font-semibold mb-3">Photos</h4>
+      <h4 class="mb-3">Photos</h4>
       <div class="grid grid-cols-3 gap-4">
         <img
           *ngFor="let image of visibleImages"
@@ -86,7 +85,7 @@
       <button
         *ngIf="visibleImages.length < images.length"
         (click)="showMore()"
-        class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        class="mt-4 px-4 py-2"
       >
         See More
       </button>
