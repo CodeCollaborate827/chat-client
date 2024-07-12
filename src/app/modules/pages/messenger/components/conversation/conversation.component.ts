@@ -53,7 +53,40 @@ export class ConversationComponent implements OnInit, OnDestroy{
     },
     {
       content: 'sau di du thuyen cho t di ke voi nha :v',
+      own: false,
+      user: {
+        avatar: '../../../../../../assets/san-marco.jpg',
+      }
+    },
+    {
+      content: 'aa',
+      image: '../../../../../../assets/san-marco.jpg',
       own: true,
+    },
+    {
+      content: 'hehe',
+      image: '../../../../../../assets/san-marco.jpg',
+      own: true,
+    },
+    {
+      content: 'hehe dep koahsdjkashdjkashdjkasdhajkdhkajsdhakjhdaks?',
+      own: true,
+    },
+    {
+      content: '?',
+      image: '../../../../../../assets/san-marco.jpg',
+      own: false,
+      user: {
+        avatar: '../../../../../../assets/san-marco.jpg',
+      }
+    },
+    {
+      content: 'hehe',
+      image: '../../../../../../assets/san-marco.jpg',
+      own: false,
+      user: {
+        avatar: '../../../../../../assets/san-marco.jpg',
+      }
     },
   ]
 

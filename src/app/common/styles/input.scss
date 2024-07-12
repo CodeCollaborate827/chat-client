@@ -1,0 +1,15 @@
+.mat-mdc-form-field {
+    display: flex;
+    align-items: center;
+}
+
+.mat-mdc-text-field-wrapper {
+    border-radius: 20px !important;
+    display: flex;
+    align-items: center;
+}
+
+.mat-mdc-form-field-infix {
+    max-height: 40px !important;
+    min-height: 30px !important;
+}

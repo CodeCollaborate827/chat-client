@@ -3,7 +3,7 @@
         <div class="conversation-top flex items-center justify-between top-4">
             <div class="conversation-info flex items-center m-3">
                 <div class="conversation-avatar">
-                    <img src="../../../../../../assets/san-marco.jpg" alt="user-avatar" class="avatar">
+                    <img src="../../../../../../assets/san-marco.jpg" alt="user-avatar" class="avatar-medium">
                 </div>
                 <div class="conversation-info flex flex-col ml-3">
                     <span>Leslie Alexander</span>
@@ -19,34 +19,68 @@
             </div>
         </div>
 
-        <div class="m-3" style="margin-bottom: 62px;">
-            <div class="message-container overflow-y-scroll my-3">
+        <div class="flex items-end m-3 grow overflow-y-scroll">
+            <div class="message-container my-3 w-full h-screen overflow-y-scroll">
                 <div class="message" *ngFor="let message of messages" [class.own]="message.own">
-                    <div *ngIf="message.user && ['last', 'single'].includes(getMessageOrder(message))" class="mr-2">
-                        <img [src]="message.user.avatar" class="avatar">
+                    <!-- avatar -->
+                    <div *ngIf="message.user && ['last', 'single'].includes(getMessageOrder(message))" class="flex items-end justify-center mr-2">
+                        <img [src]="message.user.avatar" class="avatar-medium rounded-full">
                     </div>
+                    <!-- text only message -->
                     <div 
-                        class="message-content" 
+                        class="message-text" 
+                        *ngIf="!message.image"
                         [class.not-last-message]="!['last', 'single'].includes(getMessageOrder(message))"
                         [class.first-message]="getMessageOrder(message) == 'first'"
                         [class.middle-message]="getMessageOrder(message) == 'middle'"
                         [class.last-message]="getMessageOrder(message) == 'last'"
                         [class.single-message]="getMessageOrder(message) == 'single'"
+                    >    
+                        <span *ngIf="message.content">
+                            {{ message.content }}
+                        </span>
+                    </div>
+                    <!-- image message -->
+                    <div 
+                        class="message-image" 
+                        *ngIf="message.image" 
                     >
-                        {{ message.content }}
+                        <div 
+                            class="message-text w-full flex flex-col justify-center" 
+                            *ngIf="message.content"
+                            [class.not-last-message]="!['last', 'single'].includes(getMessageOrder(message))"
+                            [class.first-message]="getMessageOrder(message) == 'first'"
+                            [class.middle-message]="getMessageOrder(message) == 'middle'"
+                            [class.last-message]="getMessageOrder(message) == 'last'"
+                            [class.single-message]="getMessageOrder(message) == 'single'"
+                        >
+                            <span class="text-center">
+                                {{ message.content }}
+                            </span>
+                        </div>
+                        <img 
+                            [src]="message.image" 
+                            class="message-image"
+                            [class.with-text]="message.content"
+                            [class.not-last-message]="!['last', 'single'].includes(getMessageOrder(message))"
+                            [class.first-message]="getMessageOrder(message) == 'first'"
+                            [class.middle-message]="getMessageOrder(message) == 'middle'"
+                            [class.last-message]="getMessageOrder(message) == 'last'"
+                            [class.single-message]="getMessageOrder(message) == 'single'"
+                        />
                     </div>
                 </div>
     
             </div>
         </div>
 
-        <div class="conversation-chat absolute bottom-0 left-0">
-            <div class="my-3 flex items center">
+        <div class="conversation-chat w-full">
+            <div class="my-3 flex items-center px-3">
                 <mat-icon class="mr-3">close</mat-icon>
                 <mat-icon class="mr-3">add_to_photos</mat-icon>
                 <mat-icon class="mr-3">attach_file</mat-icon>
                 <mat-icon class="mr-3">gif</mat-icon>
-                <div class="conversation-input">
+                <div class="conversation-input grow mr-3">
                     <mat-form-field class="w-full">
                         <input matInput type="text" placeholder="Aa">
                             <mat-icon matSuffix>sentiment_satisfied_alt</mat-icon>
