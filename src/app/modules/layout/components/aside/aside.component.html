@@ -1,3 +1,16 @@
-<aside class="aside">
-  aside component
+<aside class="aside bg-gray-100 p-4">
+  <mat-tab-group (selectedTabChange)="setActiveTab($event.tab.textLabel)">
+    <mat-tab label="Extension">
+    </mat-tab>
+    <mat-tab label="Chat">
+    </mat-tab>
+    <mat-tab label="Stored">
+    </mat-tab>
+    <mat-tab label="Information">
+    </mat-tab>
+  </mat-tab-group>
+  <div *ngIf="activeTab === 'Chat'">
+    <app-messenger></app-messenger>
+  </div>
+  <button class="logout-button py-2 px-4 text-sm font-medium text-white bg-red-500 rounded-md shadow focus:outline-none focus:ring-2 focus:ring-red-500 hover:bg-red-600 mt-4">Logout</button>
 </aside>
