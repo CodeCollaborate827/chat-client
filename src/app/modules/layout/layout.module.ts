@@ -11,7 +11,6 @@ import { PagesComponent } from "../pages/pages.component";
     LayoutComponent,
     AsideComponent,
     FooterComponent,
-    MessengerComponent
   ],
   imports: [
     CommonModule,
