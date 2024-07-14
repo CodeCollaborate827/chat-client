@@ -19,63 +19,95 @@
             </div>
         </div>
 
-        <div class="flex items-end m-3 grow overflow-y-scroll">
-            <div class="message-container my-3 w-full h-screen overflow-y-scroll">
-                <div class="message" *ngFor="let message of messages" [class.own]="message.own">
-                    <!-- avatar -->
-                    <div *ngIf="message.user && ['last', 'single'].includes(getMessageOrder(message))" class="flex items-end justify-center mr-2">
-                        <img [src]="message.user.avatar" class="avatar-medium rounded-full">
-                    </div>
-                    <!-- text only message -->
+        <div class="message-container flex flex-col overflow-y-scroll mx-3 my-1 pr-2 grow">
+            <div class="message flex" *ngFor="let message of messages" [class.own]="message.own">
+                <!-- avatar -->
+                <div *ngIf="message.user && ['last', 'single'].includes(getMessageOrder(message))" class="avatar-container flex items-end justify-center mr-2">
+                    <img [src]="message.user.avatar" class="avatar-medium">
+                </div>
+                <!-- text only message -->
+                <div 
+                    class="message-text-container flex w-full" 
+                    *ngIf="!message.image"
+                    [class.own]="message.own"
+                    [class.flex-col]="message.repliedTo"
+                    [ngClass]="message.repliedTo ? 'mt-3' : 'mt-0.5'"
+                    >    
+                    <span 
+                        *ngIf="!message.own && message.repliedTo?.content"
+                        [class.not-last-message]="!message.own && !isLastMessage(message)" 
+                    >
+                        Leslie Alexander replied to you
+                    </span>
+                    <span 
+                        *ngIf="message.own && message.repliedTo?.content"
+                        [class.not-last-message]="!message.own && !isLastMessage(message)" 
+                    >
+                        You replied to Leslie Alexander
+                    </span>
                     <div 
-                        class="message-text" 
-                        *ngIf="!message.image"
+                        *ngIf="message.repliedTo?.content"
+                        [class.not-last-message]="!message.own && !isLastMessage(message)" 
+                        class="replied-to long-text">
+                        <span>
+                            {{ message.repliedTo?.content }}
+                        </span>
+                    </div>
+                    <div 
+                        class="message-text long-text"
                         [class.not-last-message]="!['last', 'single'].includes(getMessageOrder(message))"
                         [class.first-message]="getMessageOrder(message) == 'first'"
                         [class.middle-message]="getMessageOrder(message) == 'middle'"
                         [class.last-message]="getMessageOrder(message) == 'last'"
                         [class.single-message]="getMessageOrder(message) == 'single'"
-                    >    
+                    >
                         <span *ngIf="message.content">
                             {{ message.content }}
                         </span>
                     </div>
-                    <!-- image message -->
-                    <div 
-                        class="message-image" 
-                        *ngIf="message.image" 
-                    >
-                        <div 
-                            class="message-text w-full flex flex-col justify-center" 
-                            *ngIf="message.content"
-                            [class.not-last-message]="!['last', 'single'].includes(getMessageOrder(message))"
-                            [class.first-message]="getMessageOrder(message) == 'first'"
-                            [class.middle-message]="getMessageOrder(message) == 'middle'"
-                            [class.last-message]="getMessageOrder(message) == 'last'"
-                            [class.single-message]="getMessageOrder(message) == 'single'"
-                        >
-                            <span class="text-center">
-                                {{ message.content }}
-                            </span>
-                        </div>
-                        <img 
-                            [src]="message.image" 
-                            class="message-image"
-                            [class.with-text]="message.content"
-                            [class.not-last-message]="!['last', 'single'].includes(getMessageOrder(message))"
-                            [class.first-message]="getMessageOrder(message) == 'first'"
-                            [class.middle-message]="getMessageOrder(message) == 'middle'"
-                            [class.last-message]="getMessageOrder(message) == 'last'"
-                            [class.single-message]="getMessageOrder(message) == 'single'"
-                        />
-                    </div>
                 </div>
-    
+                <!-- image message -->
+                <div 
+                    class="message-image flex w-full" 
+                    *ngIf="message.image" 
+                    [class.flex-col]="message.repliedTo"
+                    [ngClass]="message.repliedTo ? 'mt-3' : 'mt-0.5'"
+                >
+                    <span 
+                        *ngIf="!message.own && message.repliedTo?.content"
+                        [class.not-last-message]="!message.own && !isLastMessage(message)" 
+                    >
+                        Leslie Alexander replied to you
+                    </span>
+                    <span 
+                        *ngIf="message.own && message.repliedTo?.content"
+                        [class.not-last-message]="!message.own && !isLastMessage(message)" 
+                    >
+                        You replied to Leslie Alexander
+                    </span>
+                    <div 
+                        *ngIf="message.repliedTo?.content" 
+                        class="replied-to long-text">
+                        <span>
+                            {{ message.repliedTo?.content }}
+                        </span>
+                    </div>
+                    <img 
+                        [src]="message.image" 
+                        class="message-image"
+                        [class.with-text]="message.content"
+                        [class.not-last-message]="!['last', 'single'].includes(getMessageOrder(message))"
+                        [class.first-message]="getMessageOrder(message) == 'first'"
+                        [class.middle-message]="getMessageOrder(message) == 'middle'"
+                        [class.last-message]="getMessageOrder(message) == 'last'"
+                        [class.single-message]="getMessageOrder(message) == 'single'"
+                    />
+                </div>
             </div>
         </div>
 
         <div class="conversation-chat w-full">
-            <div class="my-3 flex items-center px-3">
+            <div class="mb-3 mt-1 flex items-center px-3">
                 <mat-icon class="mr-3">close</mat-icon>
                 <mat-icon class="mr-3">add_to_photos</mat-icon>
                 <mat-icon class="mr-3">attach_file</mat-icon>

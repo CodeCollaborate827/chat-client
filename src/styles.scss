@@ -77,6 +77,13 @@ body {
   border-radius: 50%;
 }
 
+.long-text {
+  word-wrap: break-word; /* Break long words */
+  overflow-wrap: break-word; /* Break long words */
+  white-space: normal; /* Allow the text to wrap to new lines */
+  word-break: break-word;
+}
+
 .mat-icon {
   width: 24px;
   height: 24px;

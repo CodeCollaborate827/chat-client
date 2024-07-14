@@ -13,3 +13,7 @@
     max-height: 40px !important;
     min-height: 30px !important;
 }
+
+.mat-form-field-outline, .mat-form-field-appearance-outline.mat-form-field-disabled {
+    opacity: 0;
+}
