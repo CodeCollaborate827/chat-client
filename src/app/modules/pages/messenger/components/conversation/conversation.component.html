@@ -19,11 +19,11 @@
             </div>
         </div>
 
-        <div class="message-container flex flex-col overflow-y-scroll mx-3 my-1 pr-2 grow">
+        <div class="message-container flex flex-col justify-end overflow-y-scroll m-3 pr-2 grow">
             <div class="message flex" *ngFor="let message of messages" [class.own]="message.own">
                 <!-- avatar -->
-                <div *ngIf="message.user && ['last', 'single'].includes(getMessageOrder(message))" class="avatar-container flex items-end justify-center mr-2">
-                    <img [src]="message.user.avatar" class="avatar-medium">
+                <div *ngIf="!message.own && ['last', 'single'].includes(getMessageOrder(message))" class="avatar-container flex items-end justify-center mr-2">
+                    <img [src]="message.user?.avatar" class="avatar-medium">
                 </div>
                 <!-- text only message -->
                 <div 
@@ -75,13 +75,11 @@
                 >
                     <span 
                         *ngIf="!message.own && message.repliedTo?.content"
-                        [class.not-last-message]="!message.own && !isLastMessage(message)" 
                     >
                         Leslie Alexander replied to you
                     </span>
                     <span 
                         *ngIf="message.own && message.repliedTo?.content"
-                        [class.not-last-message]="!message.own && !isLastMessage(message)" 
                     >
                         You replied to Leslie Alexander
                     </span>
@@ -89,7 +87,7 @@
                         *ngIf="message.repliedTo?.content" 
                         class="replied-to long-text">
                         <span>
-                            {{ message.repliedTo?.content }}
+                            {{ message.repliedTo.content }}
                         </span>
                     </div>
                     <img 
@@ -103,6 +101,10 @@
                         [class.single-message]="getMessageOrder(message) == 'single'"
                     />
                 </div>
+                <!-- notify text -->
+            </div>
+            <div class="flex items-center justify-center mt-3">
+                <span>29 Jun 2024, 14:38</span>
             </div>
         </div>
 

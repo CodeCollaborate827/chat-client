@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DialogService } from 'src/app/common/components/dialog/services';
 
 @Component({
   selector: 'app-conversation',
@@ -11,18 +12,23 @@ export class ConversationComponent implements OnInit, OnDestroy{
       content: 'Hello',
       own: true,
       // user: {
-      //   avatar: '../../../../../../assets/san-marco.jpg',
+      //   avatar: '../../../../../../assets/avatar-1.png',
       // },
       repliedTo: {
         content: 'Xin chào làm quen nhaaaaaaaaaaaaaaaaaa'
+      },
+      user: {
+        id: 1,
+        name: 'Đỗ Minh Quân'
       }
     },
     {
       content: 'chiến thần nào đấy?',
       own: true,
-      // user: {
-      //   avatar: '../../../../../../assets/san-marco.jpg',
-      // },
+      user: {
+        id: 1,
+        name: 'Đỗ Minh Quân'
+      }
       // repliedTo: {
       //   content: 'ai cơ?'
       // }
@@ -31,129 +37,86 @@ export class ConversationComponent implements OnInit, OnDestroy{
       content: 'tốt nghiệp xuất sắc kh :v',
       own: false,
       user: {
-        avatar: '../../../../../../assets/san-marco.jpg',
+        id: 2,
+        avatar: '../../../../../../assets/avatar-1.png',
+        name: 'Nguyễn Mạnh Hải'
       },
       repliedTo: {
-        content: 'ai cơ?'
+        content: 'chiến thần nào đấy?'
       }
     },
     {
-      content: 'ko thấy có trong dsach sv giỏi xsac',
-      own: true,
-    },
-    {
-      content: 'dbt thế nào',
-      own: true,
-    },
-    {
-      content: ':))',
-      own: true,
-    },
-    {
-      content: 'hay kh đki đi dự tốt nghiệp',
+      content: 'chưa chắc đã xuất sắc đâu',
       own: false,
       user: {
-        avatar: '../../../../../../assets/san-marco.jpg',
+        id: 2,
+        avatar: '../../../../../../assets/avatar-1.png',
+        name: 'Nguyễn Mạnh Hải'
       }
     },
     {
-      content: 'ừ chắc thế :v',
+      content: 'ừ :v',
       own: true,
+      // user: {
+      //   avatar: '../../../../../../assets/avatar-1.png',
+      // },
+      user: {
+        id: 1,
+        name: 'Đỗ Minh Quân'
+      }
     },
     {
-      content: 'sau di du thuyen cho t di ke voi nha :v',
+      content: 'tốt nghiệp xuất sắc kh :v',
       own: false,
       user: {
-        avatar: '../../../../../../assets/san-marco.jpg',
-      }
-    },
-    {
-      image: '../../../../../../assets/san-marco.jpg',
-      own: true,
-    },
-    {
-      image: '../../../../../../assets/san-marco.jpg',
-      own: true,
-      repliedTo: {
-        content: '???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????'
-      },
-    },
-    {
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet ultricies neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel lacus dui. Donec id lacus quis eros tristique viverra sed in ante. Nulla finibus nibh eget diam suscipit tristique. Maecenas porta cursus felis sed dignissim. Duis lorem metus, efficitur vel eros facilisis, mattis volutpat mauris. Quisque eu est posuere dui dapibus vehicula. Cras mi purus, faucibus vel ultricies in, scelerisque et sem. Etiam faucibus consectetur urna ut elementum. Maecenas nec nunc ac est faucibus tincidunt vitae sed lorem. Nam blandit ac augue ut tincidunt.?',
-      own: true,
-      repliedTo: {
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet ultricies neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel lacus dui. Donec id lacus quis eros tristique viverra sed in ante. Nulla finibus nibh eget diam suscipit tristique. Maecenas porta cursus felis sed dignissim. Duis lorem metus, efficitur vel eros facilisis, mattis volutpat mauris. Quisque eu est posuere dui dapibus vehicula. Cras mi purus, faucibus vel ultricies in, scelerisque et sem. Etiam faucibus consectetur urna ut elementum. Maecenas nec nunc ac est faucibus tincidunt vitae sed lorem. Nam blandit ac augue ut tincidunt.?',
-      }
-    },
-    {
-      own: true,
-      content: "lorem ipsum 1",
-    },
-    {
-      own: true,
-      content: "lorem ipsum 1",
-    },
-    {
-      own: true,
-      content: "lorem ipsum 1",
-    },
-    {
-      image: '../../../../../../assets/san-marco.jpg',
-      own: false,
-      user: {
-        avatar: '../../../../../../assets/san-marco.jpg',
-      }
-    },
-    {
-      image: '../../../../../../assets/san-marco.jpg',
-      own: false,
-      user: {
-        avatar: '../../../../../../assets/san-marco.jpg',
-      }
-    },
-    {
-      content: 'ừ chắc thế :v',
-      own: false,
-      user: {
-        avatar: '../../../../../../assets/san-marco.jpg',
-      }
-    },
-    {
-      content: 'ừ chắc thế :v',
-      own: false,
-      user: {
-        avatar: '../../../../../../assets/san-marco.jpg',
+        id: 3,
+        avatar: '../../../../../../assets/avatar-2.png',
+        name: 'Hồ Văn Hiếu'
       },
       repliedTo: {
-        content: "??? :D ???"
+        content: 'xin chào mọi người?'
       }
     },
     {
-      content: 'ừ chắc thế :v',
+      content: 'tốt nghiệp xuất sắc kh :v',
       own: false,
       user: {
-        avatar: '../../../../../../assets/san-marco.jpg',
-      }
-    },
-    {
-      content: 'ừ chắc thế :v',
-      own: true,
+        id: 2,
+        avatar: '../../../../../../assets/avatar-1.png',
+        name: 'Nguyễn Mạnh Hải'
+      },
+      image: '../../../../../../assets/san-marco.jpg',
       repliedTo: {
-        content: "??? :D ???"
+        content: 'hehe'
       }
     },
     {
-      content: 'ừ chắc thế :v',
-      own: true
+      content: 'tốt nghiệp xuất sắc kh :v',
+      own: false,
+      user: {
+        id: 2,
+        avatar: '../../../../../../assets/avatar-1.png',
+        name: 'Nguyễn Mạnh Hải'
+      },
+      image: '../../../../../../assets/san-marco.jpg',
+      repliedTo: {
+        content: 'hehe'
+      }
     },
   ]
 
-  constructor() {
+  constructor(
+    private dialogService: DialogService
+  ) {
 
   }
 
   ngOnInit(): void {
     
+  }
+
+  onClickImage(): void {
+
   }
   
   getMessageOrder(message: any): string {
@@ -174,7 +137,7 @@ export class ConversationComponent implements OnInit, OnDestroy{
     if (messageIndex == 0) {
       // if the message and the next message are of the same user
       const nextMessage = this.messages[messageIndex + 1]
-      if (message.own == nextMessage.own) {
+      if (message.user?.id == nextMessage.user?.id) {
         if (message.repliedTo && nextMessage.repliedTo) {
           return 'single';
         } else if (message.repliedTo && !nextMessage.repliedTo || !message.repliedTo) {
@@ -189,7 +152,7 @@ export class ConversationComponent implements OnInit, OnDestroy{
     } else if (messageIndex == this.messages.length - 1) {
       const previousMessage = this.messages[messageIndex - 1];
       // if the message and the previous message are of the same user
-      if (message.own == previousMessage.own) {
+      if (message.user?.id == previousMessage.user?.id) {
         if (message.repliedTo && !previousMessage.repliedTo || message.repliedTo && previousMessage.repliedTo ) {
           return 'single';
         } else if (!message.repliedTo) {
@@ -204,16 +167,16 @@ export class ConversationComponent implements OnInit, OnDestroy{
       const nextMessage = this.messages[messageIndex + 1];
       const previousMessage = this.messages[messageIndex - 1];
       // if the message's user is different from both previous and next message
-      if (message.own !== previousMessage.own && message.own !== nextMessage.own) {
+      if (message.user?.id !== previousMessage.user?.id && message.user?.id !== nextMessage.user?.id) {
         return 'single';
       }
-      else if (message.own !== previousMessage.own && message.own == nextMessage.own) {
+      else if (message.user?.id !== previousMessage.user?.id && message.user?.id == nextMessage.user?.id) {
         if ((!message.repliedTo && nextMessage.repliedTo) || (message.repliedTo && nextMessage.repliedTo)) {
           return 'single';
         } else if ((message.repliedTo && !nextMessage.repliedTo) || (!message.repliedTo && !nextMessage.repliedTo)) {
           return 'first';
         }
-      } else if (message.own !== nextMessage.own && message.own == previousMessage.own) {
+      } else if (message.user?.id !== nextMessage.user?.id && message.user?.id == previousMessage.user?.id) {
         if ((message.repliedTo && previousMessage.repliedTo) || (message.repliedTo && !previousMessage.repliedTo)) {
           return 'single';
         } else if ((!message.repliedTo && previousMessage.repliedTo) || (!message.repliedTo && !previousMessage.repliedTo)) {
@@ -246,7 +209,7 @@ export class ConversationComponent implements OnInit, OnDestroy{
   
     const messageIndex = this.messages.indexOf(message);
   
-    return messageIndex === this.messages.length - 1 || this.messages[messageIndex + 1].own !== message.own;
+    return messageIndex === this.messages.length - 1 || this.messages[messageIndex + 1]?.user?.id !== message.user.id;
   }
 
   ngOnDestroy(): void {
