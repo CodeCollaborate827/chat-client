@@ -1,0 +1,21 @@
+<ng-container *ngIf="src">
+  <img 
+    [src]="src" 
+    [alt]="alt" 
+    (click)="onZoomIn()" 
+    class="image" 
+    [ngClass]="classes"
+    [style.width.px]="width"
+    [style.height.px]="height"
+  />
+  <ng-template #zoomedImage>
+    <div class="dialog dialog-image">
+      <button [autofocus]="false" type="button" mat-button mat-dialog-close>
+        X
+      </button>
+      <div mat-dialog-content>
+        <img [src]="src" [alt]="alt" class="zoomed-image">
+      </div>
+    </div>
+  </ng-template>
+</ng-container>

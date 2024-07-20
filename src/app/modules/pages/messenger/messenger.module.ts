@@ -8,6 +8,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
 import { DialogModule } from "src/app/common/components/dialog";
+import { ImageModule } from "src/app/common/components/image";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DialogModule } from "src/app/common/components/dialog";
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    DialogModule
+    DialogModule,
+    ImageModule
   ],
 })
 export class MessengerModule { }

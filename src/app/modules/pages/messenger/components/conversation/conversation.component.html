@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="message-container flex flex-col justify-end overflow-y-scroll m-3 pr-2 grow">
+        <div class="message-container flex flex-col overflow-y-scroll m-3 pr-2 grow">
             <div class="message flex" *ngFor="let message of messages" [class.own]="message.own">
                 <!-- avatar -->
                 <div *ngIf="!message.own && ['last', 'single'].includes(getMessageOrder(message))" class="avatar-container flex items-end justify-center mr-2">
@@ -90,21 +90,27 @@
                             {{ message.repliedTo.content }}
                         </span>
                     </div>
-                    <img 
-                        [src]="message.image" 
-                        class="message-image"
-                        [class.with-text]="message.content"
-                        [class.not-last-message]="!['last', 'single'].includes(getMessageOrder(message))"
-                        [class.first-message]="getMessageOrder(message) == 'first'"
-                        [class.middle-message]="getMessageOrder(message) == 'middle'"
-                        [class.last-message]="getMessageOrder(message) == 'last'"
-                        [class.single-message]="getMessageOrder(message) == 'single'"
+                    <app-image
+                        [src]="message.image"
+                        [classes]="{
+                            'message-image': true,
+                            'with-text': !!message.content,
+                            'not-last-message': !['last', 'single'].includes(getMessageOrder(message)),
+                            'first-message': getMessageOrder(message) === 'first',
+                            'middle-message': getMessageOrder(message) === 'middle',
+                            'last-message': getMessageOrder(message) === 'last',
+                            'single-message': getMessageOrder(message) === 'single'
+                          }"
+                        [style.z-index]="10"
+                        [width]="300"
+                        [height]="200"
                     />
                 </div>
                 <!-- notify text -->
             </div>
             <div class="flex items-center justify-center mt-3">
-                <span>29 Jun 2024, 14:38</span>
+                <span (click)="onClick()">29 Jun 2024, 14:38</span>
+                <app-image src="../../../../../../assets/avatar-2.png" alt="image"></app-image>
             </div>
         </div>
 

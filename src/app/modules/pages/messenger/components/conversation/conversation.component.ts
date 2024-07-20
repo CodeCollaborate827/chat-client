@@ -1,4 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { DialogService } from 'src/app/common/components/dialog/services';
 
 @Component({
@@ -7,6 +9,8 @@ import { DialogService } from 'src/app/common/components/dialog/services';
   styleUrls: ['./conversation.component.scss']
 })
 export class ConversationComponent implements OnInit, OnDestroy{
+  @ViewChild('zoomedImage') zoomedImageModal!: TemplateRef<any>;
+
   messages = [
     {
       content: 'Hello',
@@ -98,7 +102,7 @@ export class ConversationComponent implements OnInit, OnDestroy{
         avatar: '../../../../../../assets/avatar-1.png',
         name: 'Nguyễn Mạnh Hải'
       },
-      image: '../../../../../../assets/san-marco.jpg',
+      image: '../../../../../../assets/avatar-1.png',
       repliedTo: {
         content: 'hehe'
       }
@@ -106,7 +110,8 @@ export class ConversationComponent implements OnInit, OnDestroy{
   ]
 
   constructor(
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private dialog: MatDialog,
   ) {
 
   }
@@ -115,8 +120,8 @@ export class ConversationComponent implements OnInit, OnDestroy{
     
   }
 
-  onClickImage(): void {
-
+  onClick(): void {
+    this.dialogService.confirm('title', 'description', new Observable);
   }
   
   getMessageOrder(message: any): string {
