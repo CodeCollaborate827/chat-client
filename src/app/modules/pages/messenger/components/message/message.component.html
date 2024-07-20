@@ -1,0 +1,179 @@
+<div class="message flex" [class.own]="message.own">
+    <!-- avatar -->
+    <div *ngIf="!message.own && ['last', 'single'].includes(getMessageOrder(message))" class="avatar-container flex items-end justify-center mr-2">
+        <app-user-avatar [avatar]="message.user.avatar"></app-user-avatar>
+    </div>
+    <!-- text only message -->
+    <div 
+        class="message-text-container flex w-full" 
+        *ngIf="!message.image && !message.attachment"
+        [class.items-end]="message.own"
+        [class.justify-end]="message.own"
+        [class.flex-col]="message.repliedTo"
+        [ngClass]="message.repliedTo ? 'mt-3' : 'mt-0.5'"
+        (mouseenter)="toggleMessageOptions(false)"
+        (mouseleave)="toggleMessageOptions(true)"
+        >    
+        <span 
+            *ngIf="!message.own && message.repliedTo?.content"
+            [class.not-last-message]="!message.own && !isLastMessage(message)" 
+        >
+            Leslie Alexander replied to you
+        </span>
+        <span 
+            *ngIf="message.own && message.repliedTo?.content"
+            [class.not-last-message]="!message.own && !isLastMessage(message)" 
+        >
+            You replied to Leslie Alexander
+        </span>
+        <div 
+            *ngIf="message.repliedTo?.content"
+            [class.not-last-message]="!message.own && !isLastMessage(message)" 
+            class="replied-to long-text">
+            <span>
+                {{ message.repliedTo?.content }}
+            </span>
+        </div>
+        <div class="message-content flex items-center" [class.flex-row-reverse]="message.own">
+            <div 
+                class="message-text long-text"
+                [class.not-last-message]="!['last', 'single'].includes(getMessageOrder(message))"
+                [class.first-message]="getMessageOrder(message) == 'first'"
+                [class.middle-message]="getMessageOrder(message) == 'middle'"
+                [class.last-message]="getMessageOrder(message) == 'last'"
+                [class.single-message]="getMessageOrder(message) == 'single'"
+                [matTooltip]="message.sentAt"
+                [matTooltipPosition]="message.own ? 'left' : 'right'"
+            >
+                <span *ngIf="message.content">
+                    {{ message.content }}
+                </span>
+            </div>
+                    
+            <div class="message-options items-center ml-4" [ngClass]="isMessageOptionsHidden ? 'invisible' : 'flex'">
+                <mat-icon class="mr-3">close</mat-icon>
+                    
+                <mat-icon class="mr-3">close</mat-icon>
+            
+                <mat-icon class="mr-3">close</mat-icon>
+            </div>
+        </div>
+    </div>
+    <!-- image message -->
+    <div 
+        class="message-image flex w-full" 
+        *ngIf="message.image" 
+        [class.flex-col]="message.repliedTo"
+        [ngClass]="message.repliedTo ? 'mt-3' : 'mt-0.5'"
+        (mouseenter)="toggleMessageOptions(false)"
+        (mouseleave)="toggleMessageOptions(true)"
+    >
+        <span 
+            *ngIf="!message.own && message.repliedTo?.content"
+        >
+            Leslie Alexander replied to you
+        </span>
+        <span 
+            *ngIf="message.own && message.repliedTo?.content"
+        >
+            You replied to Leslie Alexander
+        </span>
+        <div 
+            *ngIf="message.repliedTo?.content" 
+            class="replied-to long-text">
+            <span>
+                {{ message.repliedTo.content }}
+            </span>
+        </div>
+        <div class="message-content flex items-center" [class.flex-row-reverse]="message.own">
+            <app-image
+                [src]="message.image"
+                [classes]="{
+                    'message-image': true,
+                    'with-text': !!message.content,
+                    'not-last-message': !['last', 'single'].includes(getMessageOrder(message)),
+                    'first-message': getMessageOrder(message) === 'first',
+                    'middle-message': getMessageOrder(message) === 'middle',
+                    'last-message': getMessageOrder(message) === 'last',
+                    'single-message': getMessageOrder(message) === 'single'
+                  }"
+                [style.z-index]="10"
+                [width]="300"
+                [height]="200"
+            />
+            <div class="message-options items-center ml-4" [ngClass]="isMessageOptionsHidden ? 'invisible' : 'flex'">
+                <mat-icon class="mr-3">close</mat-icon>
+                    
+                <mat-icon class="mr-3">close</mat-icon>
+            
+                <mat-icon class="mr-3">close</mat-icon>
+            </div>
+        </div>
+    </div>
+
+    <!-- attachment message -->
+    <div 
+        class="message-attachment flex w-full"
+        *ngIf="message.attachment"
+        [class.items-end]="message.own"
+        [class.justify-end]="message.own"
+        [class.flex-col]="message.repliedTo"
+        [ngClass]="message.repliedTo ? 'mt-3' : 'mt-0.5'"
+        (mouseenter)="toggleMessageOptions(false)"
+        (mouseleave)="toggleMessageOptions(true)"
+    >
+        <span 
+            *ngIf="!message.own && message.repliedTo?.content"
+            [class.not-last-message]="!message.own && !isLastMessage(message)" 
+        >
+            Leslie Alexander replied to you
+        </span>
+        <span 
+            *ngIf="message.own && message.repliedTo?.content"
+            [class.not-last-message]="!message.own && !isLastMessage(message)" 
+        >
+            You replied to Leslie Alexander
+        </span>
+        <div 
+            *ngIf="message.repliedTo?.content"
+            [class.not-last-message]="!message.own && !isLastMessage(message)" 
+            class="replied-to long-text">
+            <span>
+                {{ message.repliedTo?.content }}
+            </span>
+        </div>
+        <div class="message-content flex items-center" [class.flex-row-reverse]="message.own">
+            <div 
+                class="flex message-text"
+                [class.not-last-message]="!['last', 'single'].includes(getMessageOrder(message))"
+                [class.first-message]="getMessageOrder(message) == 'first'"
+                [class.middle-message]="getMessageOrder(message) == 'middle'"
+                [class.last-message]="getMessageOrder(message) == 'last'"
+                [class.single-message]="getMessageOrder(message) == 'single'"
+                [matTooltip]="message.sentAt"
+                [matTooltipPosition]="message.own ? 'left' : 'right'"
+            >
+                <div class="attachment-icon flex items-center">
+                    <mat-icon class="mr-3">insert_drive_file</mat-icon>
+                </div>
+                <div class="attachment-content flex flex-col">
+                    <span>{{ message.attachment.name }}</span>
+                    <span>{{ message.attachment.size }}</span>
+                </div>
+            </div>
+                    
+            <div class="message-options items-center ml-4" [ngClass]="isMessageOptionsHidden ? 'invisible' : 'flex'">
+                <mat-icon class="mr-3">close</mat-icon>
+                    
+                <mat-icon class="mr-3">close</mat-icon>
+            
+                <mat-icon class="mr-3">close</mat-icon>
+            </div>
+        </div>
+    </div>
+    <!-- notify text -->
+</div>
+<!-- <div class="flex items-center justify-center mt-3">
+    <span>29 Jun 2024, 14:38</span>
+    <app-image src="../../../../../../assets/avatar-2.png" alt="image"></app-image>
+</div> -->

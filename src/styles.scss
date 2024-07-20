@@ -34,13 +34,13 @@ $Chat-theme: mat.define-light-theme((
 @include mat.all-component-themes($Chat-theme);
 
 /* You can add global styles to this file, and also import other style files */
-
-@import "./app/common/styles/button.scss";
-@import "./app/common/styles/text.scss";
-@import "./app/common/styles/loading.scss";
-@import "./app/common/styles/icon.scss";
-@import "./app/common/styles/variables.scss";
-@import "./app/common/styles/input.scss";
+@import '@ctrl/ngx-emoji-mart/picker';
+@import "./app/shared/styles/button.scss";
+@import "./app/shared/styles/text.scss";
+@import "./app/shared/styles/loading.scss";
+@import "./app/shared/styles/icon.scss";
+@import "./app/shared/styles/variables.scss";
+@import "./app/shared/styles/input.scss";
 
 
 html, body { 
@@ -61,20 +61,6 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   margin: 12px 6px;
-}
-
-.avatar {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.avatar-medium {
-  width: 35px;
-  height: 35px;
-  object-fit: cover;
-  border-radius: 50%;
 }
 
 .long-text {

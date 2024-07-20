@@ -16,9 +16,7 @@
             <div class="friend-messages flex flex-col mt-3 pr-1 overflow-y-scroll">
                 <div class="friend-message flex items-center justify-between" *ngFor="let message of messages, first as first">
                     <div class="message-info flex items-center mt-5">
-                        <div class="user-avatar">
-                            <img src="../../../../../../assets/san-marco.jpg" alt="user-avatar" class="avatar">
-                        </div>
+                        <app-user-avatar></app-user-avatar>
                         <div class="user-info flex flex-col ml-3">
                             <span>Leslie Alexander</span>
                             <span>What's up bro!</span>

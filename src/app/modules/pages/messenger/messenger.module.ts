@@ -2,30 +2,39 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MessengerRoutingModule } from "./messenger-routing.module";
 import { MessengerComponent } from './messenger.component';
-import { ConversationComponent, ConversationSettingComponent, FriendListComponent } from "./components";
+import { ConversationComponent, ConversationSettingComponent, FriendListComponent, MessageComponent } from "./components";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
-import { DialogModule } from "src/app/common/components/dialog";
-import { ImageModule } from "src/app/common/components/image";
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { DialogModule } from "src/app/shared/components/dialog";
+import { ImageModule } from "src/app/shared/components/image";
+import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+import { SharedModule } from "src/app/shared/shared.module";
+import { UserAvatarModule } from "src/app/shared/components/user-avatar";
 
 @NgModule({
   declarations: [
     MessengerComponent,
     ConversationComponent,
     ConversationSettingComponent,
-    FriendListComponent
+    FriendListComponent,
+    MessageComponent
   ],
   imports: [
     CommonModule,
+    SharedModule,
     MessengerRoutingModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatTooltipModule,
     DialogModule,
-    ImageModule
+    ImageModule,
+    UserAvatarModule,
+    PickerComponent
   ],
 })
 export class MessengerModule { }

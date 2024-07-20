@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, delay, of } from "rxjs";
-import { loginApiPath } from "src/app/common";
+import { loginApiPath } from "src/app/shared";
 import { UserMock } from "../mocks";
 
 @Injectable()

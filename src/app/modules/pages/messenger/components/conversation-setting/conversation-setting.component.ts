@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import Image from 'src/app/common/interface/image.interface';
+import Image from 'src/app/shared/interface/image.interface';
 
 @Component({
   selector: 'app-conversation-setting',

@@ -1,0 +1,81 @@
+@import "../../../../../shared/styles/variables.scss";
+
+.message {
+    .avatar-container {
+        min-width: 39px;
+    }
+        
+    .message-text {
+        width: fit-content;
+        padding: 10px 14px;
+        background-color: $color-primary;
+        z-index: 10;
+        max-width: 70%;
+    }
+
+    .message-image {
+        img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+            z-index: 10;
+        }
+    }
+
+    .replied-to {
+        width: fit-content;
+        max-width: 70%;
+        padding: 10px 14px;
+        background-color: $color-hover-primary;
+        z-index: 1;
+        top: -25px;
+        border-radius: 20px 20px 20px 5px;
+        margin-bottom: -10px;
+    }
+
+    .not-last-message {
+        margin-left: 47px;
+    }
+
+    .first-message {
+        border-radius: 15px 20px 20px 5px;
+    }
+
+    .middle-message {
+        border-radius: 5px 20px 20px 5px
+    }
+
+    .last-message {
+        border-radius: 5px 20px 20px 15px;
+    }
+
+    .single-message {
+        border-radius: 20px;
+    }
+}
+
+.own {
+
+    .message-image {
+        justify-content: flex-end;
+        align-items: flex-end !important;
+    }
+
+    .replied-to {
+        border-radius: 20px 20px 5px 20px;
+    }
+
+    .first-message {
+        border-radius: 20px 15px 5px 20px !important;
+    }
+
+    .middle-message {
+        border-radius: 20px 5px 5px 20px !important;
+    }
+
+    .last-message {
+        border-radius: 20px 5px 15px 20px !important;
+    }
+}
+
