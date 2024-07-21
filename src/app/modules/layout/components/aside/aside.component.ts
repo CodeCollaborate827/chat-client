@@ -6,9 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./aside.component.scss']
 })
 export class AsideComponent {
-  activeTab = 'Chat'; 
-
-  setActiveTab(tabName: string) {
-    this.activeTab = tabName;
-  }
 }
