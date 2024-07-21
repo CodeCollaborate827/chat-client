@@ -1,6 +1,10 @@
 <div class="message flex" [class.own]="message.own">
     <!-- avatar -->
-    <div *ngIf="!message.own && ['last', 'single'].includes(getMessageOrder(message))" class="avatar-container flex items-end justify-center mr-2">
+    <div   
+        *ngIf="!message.own && isLastMessage()" 
+        class="avatar-container flex items-end justify-center mr-2"
+        [class.mb-3]="message.reactionCount > 0"
+    >
         <app-user-avatar [avatar]="message.user.avatar"></app-user-avatar>
     </div>
     <!-- text only message -->
@@ -10,25 +14,26 @@
         [class.items-end]="message.own"
         [class.justify-end]="message.own"
         [class.flex-col]="message.repliedTo"
+        [class.mb-3]="message.reactionCount > 0"
         [ngClass]="message.repliedTo ? 'mt-3' : 'mt-0.5'"
         (mouseenter)="toggleMessageOptions(false)"
         (mouseleave)="toggleMessageOptions(true)"
         >    
         <span 
             *ngIf="!message.own && message.repliedTo?.content"
-            [class.not-last-message]="!message.own && !isLastMessage(message)" 
+            [class.not-last-message]="!message.own && !isLastMessage()" 
         >
             Leslie Alexander replied to you
         </span>
         <span 
             *ngIf="message.own && message.repliedTo?.content"
-            [class.not-last-message]="!message.own && !isLastMessage(message)" 
+            [class.not-last-message]="!message.own && !isLastMessage()" 
         >
             You replied to Leslie Alexander
         </span>
         <div 
             *ngIf="message.repliedTo?.content"
-            [class.not-last-message]="!message.own && !isLastMessage(message)" 
+            [class.not-last-message]="!message.own && !isLastMessage()" 
             class="replied-to long-text">
             <span>
                 {{ message.repliedTo?.content }}
@@ -36,18 +41,28 @@
         </div>
         <div class="message-content flex items-center" [class.flex-row-reverse]="message.own">
             <div 
-                class="message-text long-text"
-                [class.not-last-message]="!['last', 'single'].includes(getMessageOrder(message))"
-                [class.first-message]="getMessageOrder(message) == 'first'"
-                [class.middle-message]="getMessageOrder(message) == 'middle'"
-                [class.last-message]="getMessageOrder(message) == 'last'"
-                [class.single-message]="getMessageOrder(message) == 'single'"
+                class="message-text long-text relative"
+                [class.not-last-message]="!message.own && !isLastMessage()"
+                [class.first-message]="messageOrder == 'first'"
+                [class.middle-message]="messageOrder == 'middle'"
+                [class.last-message]="messageOrder == 'last'"
+                [class.single-message]="messageOrder == 'single'"
                 [matTooltip]="message.sentAt"
                 [matTooltipPosition]="message.own ? 'left' : 'right'"
             >
                 <span *ngIf="message.content">
                     {{ message.content }}
                 </span>
+                <div 
+                    class="message-reactions absolute rounded-full flex items-center" 
+                    *ngIf="message.reactionCount > 0"
+                    [matTooltip]="uniqueReactionUsernames()"
+                    matTooltipPosition="below"
+                    matTooltipClass="tooltip"
+                >
+                    <span *ngFor="let reaction of uniqueReactions()">{{ getReactionIcon(reaction.type) }}</span>
+                    <span class="px-1" *ngIf="message.reactionCount > 1">{{ message.reactionCount }}</span>
+                </div>
             </div>
                     
             <div class="message-options items-center ml-4" [ngClass]="isMessageOptionsHidden ? 'invisible' : 'flex'">
@@ -65,42 +80,52 @@
         *ngIf="message.image" 
         [class.flex-col]="message.repliedTo"
         [ngClass]="message.repliedTo ? 'mt-3' : 'mt-0.5'"
+        [class.mb-3]="message.reactionCount > 0"
         (mouseenter)="toggleMessageOptions(false)"
         (mouseleave)="toggleMessageOptions(true)"
     >
         <span 
             *ngIf="!message.own && message.repliedTo?.content"
+            [class.not-last-message]="!message.own && !isLastMessage()"
         >
             Leslie Alexander replied to you
         </span>
         <span 
             *ngIf="message.own && message.repliedTo?.content"
+            [class.not-last-message]="!message.own && !isLastMessage()"
         >
             You replied to Leslie Alexander
         </span>
         <div 
             *ngIf="message.repliedTo?.content" 
-            class="replied-to long-text">
+            class="replied-to long-text"
+            [class.not-last-message]="!message.own && !isLastMessage()"
+        >
             <span>
                 {{ message.repliedTo.content }}
             </span>
         </div>
         <div class="message-content flex items-center" [class.flex-row-reverse]="message.own">
-            <app-image
-                [src]="message.image"
-                [classes]="{
-                    'message-image': true,
-                    'with-text': !!message.content,
-                    'not-last-message': !['last', 'single'].includes(getMessageOrder(message)),
-                    'first-message': getMessageOrder(message) === 'first',
-                    'middle-message': getMessageOrder(message) === 'middle',
-                    'last-message': getMessageOrder(message) === 'last',
-                    'single-message': getMessageOrder(message) === 'single'
-                  }"
-                [style.z-index]="10"
-                [width]="300"
-                [height]="200"
-            />
+            <div class="relative" [style.z-index]="10">
+                <app-image
+                    [src]="message.image"
+                    [classes]="{
+                        'message-image': true,
+                        'with-text': !!message.content,
+                        'not-last-message': !message.own && !isLastMessage(),
+                        'first-message': messageOrder === 'first',
+                        'middle-message': messageOrder === 'middle',
+                        'last-message': messageOrder === 'last',
+                        'single-message': messageOrder === 'single'
+                      }"
+                    [width]="300"
+                    [height]="200"
+                />
+                <div class="message-reactions absolute rounded-full flex items-center" *ngIf="message.reactionCount > 0">
+                    <span *ngFor="let reaction of uniqueReactions()">{{ getReactionIcon(reaction.type) }}</span>
+                    <span class="px-1" *ngIf="message.reactionCount > 1">{{ message.reactionCount }}</span>
+                </div>
+            </div>
             <div class="message-options items-center ml-4" [ngClass]="isMessageOptionsHidden ? 'invisible' : 'flex'">
                 <mat-icon class="mr-3">close</mat-icon>
                     
@@ -118,25 +143,26 @@
         [class.items-end]="message.own"
         [class.justify-end]="message.own"
         [class.flex-col]="message.repliedTo"
+        [class.mb-3]="message.reactionCount > 0"
         [ngClass]="message.repliedTo ? 'mt-3' : 'mt-0.5'"
         (mouseenter)="toggleMessageOptions(false)"
         (mouseleave)="toggleMessageOptions(true)"
     >
         <span 
             *ngIf="!message.own && message.repliedTo?.content"
-            [class.not-last-message]="!message.own && !isLastMessage(message)" 
+            [class.not-last-message]="!message.own && !isLastMessage()" 
         >
             Leslie Alexander replied to you
         </span>
         <span 
             *ngIf="message.own && message.repliedTo?.content"
-            [class.not-last-message]="!message.own && !isLastMessage(message)" 
+            [class.not-last-message]="!message.own && !isLastMessage()" 
         >
             You replied to Leslie Alexander
         </span>
         <div 
             *ngIf="message.repliedTo?.content"
-            [class.not-last-message]="!message.own && !isLastMessage(message)" 
+            [class.not-last-message]="!message.own && !isLastMessage()" 
             class="replied-to long-text">
             <span>
                 {{ message.repliedTo?.content }}
@@ -144,12 +170,12 @@
         </div>
         <div class="message-content flex items-center" [class.flex-row-reverse]="message.own">
             <div 
-                class="flex message-text"
-                [class.not-last-message]="!['last', 'single'].includes(getMessageOrder(message))"
-                [class.first-message]="getMessageOrder(message) == 'first'"
-                [class.middle-message]="getMessageOrder(message) == 'middle'"
-                [class.last-message]="getMessageOrder(message) == 'last'"
-                [class.single-message]="getMessageOrder(message) == 'single'"
+                class="flex message-text relative"
+                [class.not-last-message]="!['last', 'single'].includes(messageOrder)"
+                [class.first-message]="messageOrder == 'first'"
+                [class.middle-message]="messageOrder == 'middle'"
+                [class.last-message]="messageOrder == 'last'"
+                [class.single-message]="messageOrder == 'single'"
                 [matTooltip]="message.sentAt"
                 [matTooltipPosition]="message.own ? 'left' : 'right'"
             >
@@ -159,6 +185,10 @@
                 <div class="attachment-content flex flex-col">
                     <span>{{ message.attachment.name }}</span>
                     <span>{{ message.attachment.size }}</span>
+                </div>
+                <div class="message-reactions absolute rounded-full flex items-center" *ngIf="message.reactionCount > 0">
+                    <span *ngFor="let reaction of uniqueReactions()">{{ getReactionIcon(reaction.type) }}</span>
+                    <span class="px-1" *ngIf="message.reactionCount > 1">{{ message.reactionCount }}</span>
                 </div>
             </div>
                     

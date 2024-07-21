@@ -53,6 +53,13 @@
     .single-message {
         border-radius: 20px;
     }
+
+    .message-reactions {
+        bottom: -15px;
+        right: -2px;
+        padding: 3px;
+        background-color: black;
+    }
 }
 
 .own {
@@ -78,4 +85,3 @@
         border-radius: 20px 5px 15px 20px !important;
     }
 }
-

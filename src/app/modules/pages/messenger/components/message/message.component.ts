@@ -10,7 +10,9 @@ export class MessageComponent {
   @Input() message: any = {};
   isMessageOptionsHidden: boolean = true;
 
-  constructor() {
+  constructor(
+    
+  ) {
 
   }
 
@@ -18,28 +20,25 @@ export class MessageComponent {
     this.isMessageOptionsHidden = hidden ? true : false;
   }
     
-  getMessageOrder(message: any): string {
-    let order = ''
+  get messageOrder(): string {
     // if there is no message
     if (this.messages.length === 0) {
-      order = '';
-      return order;
+      return '';
     }
     // if there is only one message 
     if (this.messages.length === 1) {
-      order = 'single';
-      return order;
+      return 'single';
     }
-    const messageIndex = this.messages.indexOf(message);
+    const messageIndex = this.messages.indexOf(this.message);
 
     // if the message is the first message
-    if (messageIndex == 0) {
+    if (messageIndex == this.messages.length - 1) {
       // if the message and the next message are of the same user
-      const nextMessage = this.messages[messageIndex + 1]
-      if (message.user?.id == nextMessage.user?.id) {
-        if (message.repliedTo && nextMessage.repliedTo) {
+      const nextMessage = this.messages[messageIndex - 1]
+      if (this.message.user?.id == nextMessage.user?.id) {
+        if (this.message.repliedTo && nextMessage.repliedTo) {
           return 'single';
-        } else if (message.repliedTo && !nextMessage.repliedTo || !message.repliedTo) {
+        } else if (this.message.repliedTo && !nextMessage.repliedTo || !this.message.repliedTo) {
           return 'first';
         }
       }
@@ -48,13 +47,13 @@ export class MessageComponent {
         return 'single';
       }
       // if the message is the last message
-    } else if (messageIndex == this.messages.length - 1) {
-      const previousMessage = this.messages[messageIndex - 1];
+    } else if (messageIndex == 0) {
+      const previousMessage = this.messages[messageIndex + 1];
       // if the message and the previous message are of the same user
-      if (message.user?.id == previousMessage.user?.id) {
-        if (message.repliedTo && !previousMessage.repliedTo || message.repliedTo && previousMessage.repliedTo ) {
+      if (this.message.user?.id == previousMessage.user?.id) {
+        if (this.message.repliedTo && !previousMessage.repliedTo || this.message.repliedTo && previousMessage.repliedTo ) {
           return 'single';
-        } else if (!message.repliedTo) {
+        } else if (!this.message.repliedTo) {
           return 'last';
         }
         // if the message and the previous message are of different user
@@ -63,51 +62,111 @@ export class MessageComponent {
       }
       // if the message is in the middle
     } else {
-      const nextMessage = this.messages[messageIndex + 1];
-      const previousMessage = this.messages[messageIndex - 1];
+      const nextMessage = this.messages[messageIndex - 1];
+      const previousMessage = this.messages[messageIndex + 1];
       // if the message's user is different from both previous and next message
-      if (message.user?.id !== previousMessage.user?.id && message.user?.id !== nextMessage.user?.id) {
+      if (this.message.user?.id !== previousMessage.user?.id && this.message.user?.id !== nextMessage.user?.id) {
         return 'single';
       }
-      else if (message.user?.id !== previousMessage.user?.id && message.user?.id == nextMessage.user?.id) {
-        if ((!message.repliedTo && nextMessage.repliedTo) || (message.repliedTo && nextMessage.repliedTo)) {
+      else if (this.message.user?.id !== previousMessage.user?.id && this.message.user?.id == nextMessage.user?.id) {
+        if ((!this.message.repliedTo && nextMessage.repliedTo) || 
+          (this.message.repliedTo && nextMessage.repliedTo) || this.message.reactionCount > 0) {
           return 'single';
-        } else if ((message.repliedTo && !nextMessage.repliedTo) || (!message.repliedTo && !nextMessage.repliedTo)) {
+        } else if ((this.message.repliedTo && !nextMessage.repliedTo) || (!this.message.repliedTo && !nextMessage.repliedTo)) {
           return 'first';
         }
-      } else if (message.user?.id !== nextMessage.user?.id && message.user?.id == previousMessage.user?.id) {
-        if ((message.repliedTo && previousMessage.repliedTo) || (message.repliedTo && !previousMessage.repliedTo)) {
+      } else if (this.message.user?.id !== nextMessage.user?.id && this.message.user?.id == previousMessage.user?.id) {
+        if ((this.message.repliedTo && previousMessage.repliedTo) || 
+          (this.message.repliedTo && !previousMessage.repliedTo) || 
+          (previousMessage.reactionCount > 0)
+        ) {
           return 'single';
-        } else if ((!message.repliedTo && previousMessage.repliedTo) || (!message.repliedTo && !previousMessage.repliedTo)) {
+        } else if (((!this.message.repliedTo && previousMessage.repliedTo) ||
+          (!this.message.repliedTo && !previousMessage.repliedTo))
+        ) {
           return 'last';
         }
       } else { 
-        if (message.repliedTo) {
+        if (this.message.repliedTo) {
           if (nextMessage.repliedTo) {
             return 'single';
           } else {
             return 'first';
           }
         } else { 
-          if ((!previousMessage.repliedTo && !nextMessage.repliedTo) || (previousMessage.repliedTo && !nextMessage.repliedTo)) {
+          if (previousMessage.reactionCount > 0) {
+            if (nextMessage.repliedTo || this.message.reactionCount) {
+              return 'single';
+            } else {
+              return 'first';
+            }
+          }
+          if (
+            (!previousMessage.repliedTo && !nextMessage.repliedTo) || 
+            (previousMessage.repliedTo && !nextMessage.repliedTo) || 
+            (previousMessage.reactionCount == 0 && this.message.reactionCount == 0)
+          ) {
             return 'middle';
-          } else if ((previousMessage.repliedTo && !nextMessage.repliedTo) || (!previousMessage.repliedTo && nextMessage.repliedTo) || (previousMessage.repliedTo && nextMessage.repliedTo)) { 
+          } else if (
+            (previousMessage.repliedTo && !nextMessage.repliedTo) || 
+            (!previousMessage.repliedTo && nextMessage.repliedTo) || 
+            (previousMessage.repliedTo && nextMessage.repliedTo)  
+            (previousMessage.reactionCount == 0 && this.message.reactionCount > 0)
+          ) { 
             return 'last';
           }
         }
       }
     }
   
-    return order;
+    return '';
   }
 
-  isLastMessage(message: any): boolean {
+  uniqueReactions() {
+    return Object.keys(this.message.reactions).map(type => ({
+      type,
+      count: this.message.reactions[type].length
+    }));
+  }
+
+  uniqueReactionUsernames(): string {
+    const names: string[] = [];
+
+    Object.keys(this.message.reactions).forEach(type => {
+      this.message.reactions[type].forEach((user: any) => {
+        names.push(user.name);
+      });
+    });
+
+    return names.join('\n');
+  }
+
+  isLastMessage(): boolean {
     if (this.messages.length === 1) {
       return true;
     }
   
-    const messageIndex = this.messages.indexOf(message);
-  
-    return messageIndex === this.messages.length - 1 || this.messages[messageIndex + 1]?.user?.id !== message.user.id;
+    const messageIndex = this.messages.indexOf(this.message);
+    return messageIndex === this.messages.length - 1 || this.messages[messageIndex - 1]?.user?.id !== this.message.user.id;
   }
+
+  getReactionIcon(type: string): string {
+    switch(type) {
+      case "heart": 
+        return "❤️";
+      case "like": 
+        return "👍";
+      case "haha": 
+        return "😆";
+      case "sad": 
+        return "😢";
+      case "wow": 
+        return "😮";
+      case "angry": 
+        return "😡";
+      default:
+        return "";
+    }
+  }
+
 }

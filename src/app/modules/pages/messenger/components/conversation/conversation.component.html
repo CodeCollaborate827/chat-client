@@ -20,8 +20,8 @@
             </div>
         </div>
 
-        <div class="message-container flex flex-col overflow-y-scroll m-3 pr-2 grow">
-            <ng-container *ngFor="let message of messages">
+        <div class="message-container flex flex-col-reverse overflow-y-scroll m-3 pr-2 grow">
+            <ng-container *ngFor="let message of messages.reverse()">
                 <app-message [messages]="messages" [message]="message"></app-message>
             </ng-container>
         </div>
