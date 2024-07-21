@@ -127,6 +127,12 @@ export class ConversationComponent implements OnInit, OnDestroy{
     },
   ]
 
+  showEmojiPicker = false;
+
+  inputContent = ''; 
+
+  showSendButton = false;
+
   constructor(
     private dialogService: DialogService,
     private dialog: MatDialog,
@@ -145,5 +151,27 @@ export class ConversationComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     
+  }
+
+  addEmoji(event: any) {
+    this.inputContent += event.emoji.native;
+    console.log('Emoji added:', event.emoji.native);
+    this.updateSendButtonState();
+  }
+
+  toggleEmojiPicker() {
+    this.showEmojiPicker = !this.showEmojiPicker;
+  }
+
+  updateSendButtonState() {
+    this.showSendButton = this.inputContent.trim().length > 0;
+  }
+
+  sendMessage() {
+    if (this.inputContent.trim()) {
+      console.log('Message sent:', this.inputContent);
+      this.inputContent = ''; 
+      this.updateSendButtonState();
+    }
   }
 }

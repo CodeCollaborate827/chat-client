@@ -20,6 +20,20 @@
                 color: $color-primary;
             }
         }
+
+        .emoji-picker-container {
+            position: absolute;
+            bottom: 100%; 
+            right: 400px;
+            z-index: 1000; 
+        }
+        
+        .emoji-close {
+            position: absolute;
+            top: 0; 
+            right: 0;
+            cursor: pointer;
+        }
     }
 
     ::ng-deep {
