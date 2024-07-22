@@ -30,7 +30,15 @@
             <div class="mb-3 mt-1 flex items-center px-3">
                 <mat-icon class="mr-3">close</mat-icon>
                 <mat-icon class="mr-3">add_to_photos</mat-icon>
-                <mat-icon class="mr-3">attach_file</mat-icon>
+                <mat-icon class="mr-3" (click)="file.click()">attach_file</mat-icon>
+                <input 
+                    type="file" 
+                    #file name="attachment" 
+                    hidden="true" 
+                    multiple="true" 
+                    [accept]="accept"
+                    (change)="onFileSelected($event)"
+                >
                 <mat-icon class="mr-3">gif</mat-icon>
                 <div class="conversation-input grow mr-3">
                     <mat-form-field class="w-full">

@@ -2,6 +2,8 @@ import { Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@a
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { DialogService } from 'src/app/shared/components/dialog/services';
+import { NewMessage } from '../../models';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-conversation',
@@ -270,16 +272,36 @@ export class ConversationComponent implements OnInit, OnDestroy{
       reactionCount: 3
     },
   ]
+  form?: FormGroup;
+
+  newMessage: NewMessage = {};
+
+  accept: string = '.jpg,.jpeg,.png,.pdf,.doc,.docx,.xlsx,.xls';
 
   constructor(
     private dialogService: DialogService,
     private dialog: MatDialog,
+    private fb: FormBuilder
   ) {
 
   }
 
   ngOnInit(): void {
     
+  }
+
+  createForm(): void { 
+    this.form = this.fb.group({
+      text: [],
+      file: []
+    })
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      console.log(input.files);
+    }
   }
 
   onClick(): void {
