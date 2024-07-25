@@ -24,5 +24,18 @@
         color: white;
       }
     }
+
+    .nav-link {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+    
+    .nav-link:hover {
+      background-color: #4a5568; /* Equivalent to hover:bg-gray-700 */
+    }
   }
 }

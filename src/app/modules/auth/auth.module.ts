@@ -7,6 +7,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { FpasswordComponent } from "./components/fpassword/fpassword.component";
 import { MatIconModule } from "@angular/material/icon";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { MatIconModule } from "@angular/material/icon";
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
 })
 export class AuthModule {}
