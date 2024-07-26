@@ -2,6 +2,8 @@ import { Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild } from '@a
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { DialogService } from 'src/app/shared/components/dialog/services';
+import { NewMessage } from '../../models';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-conversation',
@@ -25,7 +27,7 @@ export class ConversationComponent implements OnInit, OnDestroy{
         id: 1,
         name: 'Đỗ Minh Quân'
       },
-      sentAt: '19:35'
+      sentAt: '19:35',
     },
     {
       content: 'chiến thần nào đấy?',
@@ -37,7 +39,36 @@ export class ConversationComponent implements OnInit, OnDestroy{
       // repliedTo: {
       //   content: 'ai cơ?'
       // }
-      sentAt: '19:37'
+      reactions: 
+        { 
+          heart: [
+            {
+              name: "Nguyễn Mạnh Hải"
+            },
+            {
+              name: "Đỗ Doãn Vũ"
+            },
+          ],
+          haha: [
+            {
+              name: "Hồ Văn Hiếu"
+            },
+          ]
+        },
+      reactionCount: 3,
+      sentAt: '19:37',
+    },
+    {
+      content: 'chiến thần nào đấy?',
+      own: true,
+      user: {
+        id: 1,
+        name: 'Đỗ Minh Quân'
+      },
+      // repliedTo: {
+      //   content: 'ai cơ?'
+      // }
+      sentAt: '19:37',
     },
     {
       content: '',
@@ -50,10 +81,24 @@ export class ConversationComponent implements OnInit, OnDestroy{
         id: 1,
         name: 'Đỗ Minh Quân'
       },
-      repliedTo: {
-        content: 'gửi file đi'
+      sentAt: '19:47',
+      reactions: 
+      { 
+        heart: [
+          {
+            name: "Nguyễn Mạnh Hải"
+          },
+          {
+            name: "Đỗ Doãn Vũ"
+          },
+        ],
+        haha: [
+          {
+            name: "Hồ Văn Hiếu"
+          },
+        ]
       },
-      sentAt: '19:47'
+      reactionCount: 3
     },
     {
       content: 'tốt nghiệp xuất sắc kh :v',
@@ -65,7 +110,33 @@ export class ConversationComponent implements OnInit, OnDestroy{
       },
       repliedTo: {
         content: 'chiến thần nào đấy?'
-      }
+      },
+      reactions: 
+      { 
+        heart: [
+          {
+            name: "Nguyễn Mạnh Hải"
+          },
+          {
+            name: "Đỗ Doãn Vũ"
+          },
+        ],
+        haha: [
+          {
+            name: "Hồ Văn Hiếu"
+          },
+        ]
+      },
+      reactionCount: 3
+    },
+    {
+      content: 'tốt nghiệp xuất sắc kh :v',
+      own: false,
+      user: {
+        id: 2,
+        avatar: '../../../../../../assets/avatar-1.png',
+        name: 'Nguyễn Mạnh Hải'
+      },
     },
     {
       content: 'chưa chắc đã xuất sắc đâu',
@@ -74,7 +145,24 @@ export class ConversationComponent implements OnInit, OnDestroy{
         id: 2,
         avatar: '../../../../../../assets/avatar-1.png',
         name: 'Nguyễn Mạnh Hải'
-      }
+      },
+      reactions: 
+      { 
+        heart: [
+          {
+            name: "Nguyễn Mạnh Hải"
+          },
+          {
+            name: "Đỗ Doãn Vũ"
+          },
+        ],
+        haha: [
+          {
+            name: "Hồ Văn Hiếu"
+          },
+        ]
+      },
+      reactionCount: 3
     },
     {
       content: 'ừ :v',
@@ -103,6 +191,33 @@ export class ConversationComponent implements OnInit, OnDestroy{
       content: 'tốt nghiệp xuất sắc kh :v',
       own: false,
       user: {
+        id: 3,
+        avatar: '../../../../../../assets/avatar-2.png',
+        name: 'Hồ Văn Hiếu'
+      },
+    },
+    {
+      content: 'tốt nghiệp xuất sắc kh :v',
+      own: false,
+      user: {
+        id: 3,
+        avatar: '../../../../../../assets/avatar-2.png',
+        name: 'Hồ Văn Hiếu'
+      },
+    },
+    {
+      content: 'tốt nghiệp xuất sắc kh :v',
+      own: false,
+      user: {
+        id: 3,
+        avatar: '../../../../../../assets/avatar-2.png',
+        name: 'Hồ Văn Hiếu'
+      },
+    },
+    {
+      content: 'tốt nghiệp xuất sắc kh :v',
+      own: false,
+      user: {
         id: 2,
         avatar: '../../../../../../assets/avatar-1.png',
         name: 'Nguyễn Mạnh Hải'
@@ -110,7 +225,24 @@ export class ConversationComponent implements OnInit, OnDestroy{
       image: '../../../../../../assets/san-marco.jpg',
       repliedTo: {
         content: 'hehe'
-      }
+      },
+      reactions: 
+      { 
+        heart: [
+          {
+            name: "Nguyễn Mạnh Hải"
+          },
+          {
+            name: "Đỗ Doãn Vũ"
+          },
+        ],
+        haha: [
+          {
+            name: "Hồ Văn Hiếu"
+          },
+        ]
+      },
+      reactionCount: 3
     },
     {
       content: 'tốt nghiệp xuất sắc kh :v',
@@ -121,11 +253,30 @@ export class ConversationComponent implements OnInit, OnDestroy{
         name: 'Nguyễn Mạnh Hải'
       },
       image: '../../../../../../assets/avatar-1.png',
-      repliedTo: {
-        content: 'hehe'
-      }
+      reactions: 
+      { 
+        heart: [
+          {
+            name: "Nguyễn Mạnh Hải"
+          },
+          {
+            name: "Đỗ Doãn Vũ"
+          },
+        ],
+        haha: [
+          {
+            name: "Hồ Văn Hiếu"
+          },
+        ]
+      },
+      reactionCount: 3
     },
   ]
+  form?: FormGroup;
+
+  newMessage: NewMessage = {};
+
+  accept: string = '.jpg,.jpeg,.png,.pdf,.doc,.docx,.xlsx,.xls';
 
   showEmojiPicker = false;
 
@@ -136,12 +287,27 @@ export class ConversationComponent implements OnInit, OnDestroy{
   constructor(
     private dialogService: DialogService,
     private dialog: MatDialog,
+    private fb: FormBuilder
   ) {
 
   }
 
   ngOnInit(): void {
     
+  }
+
+  createForm(): void { 
+    this.form = this.fb.group({
+      text: [],
+      file: []
+    })
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      console.log(input.files);
+    }
   }
 
   onClick(): void {

@@ -20,8 +20,8 @@
             </div>
         </div>
 
-        <div class="message-container flex flex-col overflow-y-scroll m-3 pr-2 grow">
-            <ng-container *ngFor="let message of messages">
+        <div class="message-container flex flex-col-reverse overflow-y-scroll m-3 pr-2 grow">
+            <ng-container *ngFor="let message of messages.reverse()">
                 <app-message [messages]="messages" [message]="message"></app-message>
             </ng-container>
         </div>
@@ -39,6 +39,15 @@
                     <mat-icon class="emoji-close" (click)="toggleEmojiPicker()">close</mat-icon>
                 </div>
 
+                <mat-icon class="mr-3" (click)="file.click()">attach_file</mat-icon>
+                <input 
+                    type="file" 
+                    #file name="attachment" 
+                    hidden="true" 
+                    multiple="true" 
+                    [accept]="accept"
+                    (change)="onFileSelected($event)"
+                >
                 <mat-icon class="mr-3">gif</mat-icon>
                 <div class="conversation-input grow mr-3">
                     <mat-form-field class="w-full">

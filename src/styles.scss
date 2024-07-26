@@ -41,6 +41,7 @@ $Chat-theme: mat.define-light-theme((
 @import "./app/shared/styles/icon.scss";
 @import "./app/shared/styles/variables.scss";
 @import "./app/shared/styles/input.scss";
+@import "./app/shared/styles/tooltip.scss";
 
 
 html, body { 
@@ -77,6 +78,12 @@ body {
   display: inline-block;
   fill: currentColor;
   cursor: pointer;
+}
+
+.tooltip {
+  white-space: pre-line; 
+  display: block; 
+  text-align: left;
 }
 
 
