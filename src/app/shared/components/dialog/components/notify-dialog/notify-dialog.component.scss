@@ -1,0 +1,16 @@
+
+:host {
+  .dialog {
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+}

@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
+import { ConfirmDialogComponent, NotifyDialogComponent } from 'src/app/shared/components/dialog/components';
 
 @Component({
   selector: 'app-fpassword',
@@ -14,7 +16,7 @@ export class FpasswordComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject();
 
   constructor(private formBuilder: FormBuilder,
-    private elementRef: ElementRef
+    private elementRef: ElementRef, private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +35,33 @@ export class FpasswordComponent implements OnInit, OnDestroy {
       return;
     }
     this.prepareData();
+  }
+
+  openConfirmDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '300px',
+      data: {
+        title: 'Confirm Action',
+        message: 'Are you sure you want to proceed?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('User confirmed the action');
+      } else {
+        console.log('User canceled the action');
+      }
+    });
+  }
+
+  openNotifyDialog(): void {
+    this.dialog.open(NotifyDialogComponent, {
+      data: {
+        title: 'Notification',
+        message: 'Reset password link has been sent to your email.'
+      }
+    });
   }
 
   private prepareData() {

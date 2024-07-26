@@ -9,6 +9,9 @@ import { FpasswordComponent } from "./components/fpassword/fpassword.component";
 import { MatIconModule } from "@angular/material/icon";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { DialogModule } from "@angular/cdk/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { MatInputModule } from "@angular/material/input";
     ReactiveFormsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    DialogModule,
+    MatDialogModule,
+    ToastrModule
   ],
 })
 export class AuthModule {}
