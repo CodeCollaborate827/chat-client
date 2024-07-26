@@ -1,16 +1,57 @@
-<aside class="aside bg-gray-100 p-4">
-  <mat-tab-group (selectedTabChange)="setActiveTab($event.tab.textLabel)">
-    <mat-tab label="Extension">
-    </mat-tab>
-    <mat-tab label="Chat">
-    </mat-tab>
-    <mat-tab label="Stored">
-    </mat-tab>
-    <mat-tab label="Information">
-    </mat-tab>
-  </mat-tab-group>
-  <div *ngIf="activeTab === 'Chat'">
+<aside class="aside-container card">
+  <div class="flex flex-col">
+    <div class="m-5">
+      <app-user-avatar
+        avatar="../../../../../../assets/san-marco.jpg"
+      ></app-user-avatar>
+    </div>
 
+    <nav class="nav flex flex-col">
+      <a
+        routerLink="/"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="nav-link"
+      >
+        <mat-icon>home</mat-icon>
+      </a>
+      <a
+        routerLink="/messenger"
+        routerLinkActive="active-link"
+        class="nav-link"
+      >
+        <mat-icon>message</mat-icon>
+      </a>
+      <a
+        routerLink="/test"
+        routerLinkActive="active-link"
+        class="nav-link"
+      >
+        <mat-icon>contacts</mat-icon>
+      </a>  
+      <a
+      routerLink="/saved"
+      routerLinkActive="active-link"
+        class="nav-link"
+      >
+        <mat-icon>save</mat-icon>
+      </a>
+
+      <a
+        routerLink="/auth/fpassword"
+        routerLinkActive="active-link"
+        class="nav-link"
+      >
+        <mat-icon>settings</mat-icon>
+      </a>
+
+      <a
+        routerLink="/auth/login"
+        routerLinkActive="active-link"
+        class="nav-link"
+      >
+        <mat-icon>logout</mat-icon>
+      </a>
+    </nav>
   </div>
-  <button class="btn btn-primary">Logout</button>
 </aside>

@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { AuthComponent } from "./auth.component";
 import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
+import { FpasswordComponent } from "./components/fpassword/fpassword.component";
 
 const routes: Routes = [
   {
@@ -17,7 +18,10 @@ const routes: Routes = [
         path: 'register',
         component: RegisterComponent
       },
-      
+      {
+        path: 'fpassword',
+        component: FpasswordComponent
+      },
     ]
   }
 ]

@@ -1,3 +1,41 @@
-.aside {
-  width: 100px;
+@import "../../../../shared/styles/variables.scss";
+
+:host {
+  .aside-container {
+    width: 80px;
+    background-color: rgb(4, 4, 4) !important;
+    height: calc(100vh - 32px);
+    flex: 1;
+
+    mat-icon {
+      color: #776f6c; 
+      font-size: 18px; 
+    }
+  }
+
+ 
+
+  .nav {
+    margin-top: 70px;
+
+    .active-link {
+      background-color: #4a5568; 
+      mat-icon {
+        color: white;
+      }
+    }
+
+    .nav-link {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+    
+    .nav-link:hover {
+      background-color: #4a5568; /* Equivalent to hover:bg-gray-700 */
+    }
+  }
 }

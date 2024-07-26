@@ -10,9 +10,10 @@ import { MatButtonModule } from "@angular/material/button";
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { DialogModule } from "src/app/shared/components/dialog";
 import { ImageModule } from "src/app/shared/components/image";
-import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+import { PickerComponent, PickerModule } from '@ctrl/ngx-emoji-mart';
 import { SharedModule } from "src/app/shared/shared.module";
 import { UserAvatarModule } from "src/app/shared/components/user-avatar";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { UserAvatarModule } from "src/app/shared/components/user-avatar";
     DialogModule,
     ImageModule,
     UserAvatarModule,
-    PickerComponent
+    PickerComponent,
+    PickerModule,
+    FormsModule
   ],
 })
 export class MessengerModule { }

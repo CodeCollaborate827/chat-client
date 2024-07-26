@@ -5,23 +5,31 @@ import { AuthRoutingModule } from "./auth-routing.module";
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from "@angular/forms";
+import { FpasswordComponent } from "./components/fpassword/fpassword.component";
+import { MatIconModule } from "@angular/material/icon";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { DirectiveModule } from "src/app/shared/directives/directive.module";
+import { DialogModule } from "@angular/cdk/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [
     AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FpasswordComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
+    MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    DirectiveModule
+    DialogModule,
+    MatDialogModule,
+    ToastrModule
   ],
 })
 export class AuthModule {}
