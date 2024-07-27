@@ -8,8 +8,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  error: string | null = null;
-  form: FormGroup = new FormGroup({});
+  form?: FormGroup;
 
   private readonly destroy$ = new Subject();
 
@@ -47,7 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private prepareData() {
-    const loginData = this.form.value;
+    const loginData = this.form?.value;
     console.log(loginData);
   }
 

@@ -1,69 +1,61 @@
-.mat-mdc-form-field {
-    display: flex;
-    align-items: center;
-}
+::ng-deep {
+    .mat-mdc-form-field {
+        display: flex;
+        align-items: center;
 
-.mat-mdc-text-field-wrapper {
-    border-radius: 20px !important;
-    display: flex;
-    align-items: center;
-    flex: auto;
-    height: auto;
-}
+        --mdc-filled-text-field-caret-color: #ff0000;
+        --mdc-filled-text-field-label-text-color: rgba(157, 28, 255, 0.969);
+        --mdc-filled-text-field-input-text-color: rgb(26, 255, 0);
+        --mdc-filled-text-field-input-text-placeholder-color: rgb(0, 42, 255, 0.68);
+        --mdc-filled-text-field-outline-color: rgb(0, 193, 200, 0.96);
+        --mdc-filled-text-field-hover-outline-color: rgb(221,2, 255, 0.885);
+        --mdc-filled-text-field-focus-outline-color: #08a51c;
+        --mdc-filled-text-field-focus-label-text-color: rgb(251, 54, 0);
+        --mdc-filled-text-field-label-text-size: 16px;
+        --mdc-filled-text-field-label-text-tracking: 0.03125em;
+        --mdc-filled-text-field-label-text-weight: 400;
 
-.mat-mdc-form-field-infix {
-    max-height: 40px !important;
-    min-height: 30px !important;
-}
+        --mdc-outlined-text-field-caret-color: #ff0000;
+        --mdc-outlined-text-field-label-text-color: rgba(157, 28, 255, 0.969);
+        --mdc-outlined-text-field-input-text-color: rgb(26, 255, 0);
+        --mdc-outlined-text-field-input-text-placeholder-color: rgb(0, 42, 255, 0.68);
+        --mdc-outlined-text-field-outline-color: rgb(0, 193, 200, 0.96);
+        --mdc-outlined-text-field-hover-outline-color: rgb(221,2, 255, 0.885);
+        --mdc-outlined-text-field-focus-outline-color: #08a51c;
+        --mdc-outlined-text-field-focus-label-text-color: rgb(251, 54, 0);
+        --mdc-outlined-text-field-label-text-size: 16px;
+        --mdc-outlined-text-field-label-text-tracking: 0.03125em;
+        --mdc-outlined-text-field-label-text-weight: 400;
 
-.mat-form-field-outline, .mat-form-field-appearance-outline.mat-form-field-disabled {
-    opacity: 0;
-}
+        --mdc-filled-text-field-error-caret-color: #f44336;
+        --mdc-filled-text-field-error-label-text-color: #f44336;
+        --mdc-filled-text-field-error-focus-label-text-color: #f44336;
+        --mdc-filled-text-field-error-active-indicator-color: #f44336;
+        --mdc-filled-text-field-error-hover-indicator-color: #f44336;
+        --mdc-filled-text-field-error-focus-indicator-color: #f44336;
+        --mdc-outlined-text-field-error-caret-color: #f44336;
+        --mdc-outlined-text-field-error-label-text-color: #f44336;
+        --mdc-outlined-text-field-error-focus-label-text-color: #f44336;
+        --mdc-outlined-text-field-error-active-indicator-color: #f44336;
+        --mdc-outlined-text-field-error-hover-indicator-color: #f44336;
+        --mdc-outlined-text-field-error-focus-indicator-color: #f44336;
 
-::ng-deep .mat-form-field {
-    .mat-input-element {
-        color: slategray;
     }
-    .mat-form-field-label {
-        color: slategray;
+    
+    .mat-mdc-text-field-wrapper {
+        border-radius: 20px !important;
+        display: flex;
+        align-items: center;
+        flex: auto;
+        height: auto;
     }
-    .mat-form-field-underline {
-        background-color: slategray;
+    
+    .mat-mdc-form-field-infix {
+        max-height: 40px !important;
+        min-height: 30px !important;
     }
-    .mat-form-field-ripple {
-        background-color: slategray;
-    }
-    .mat-form-field-required-marker {
-        color: slategray;
-    }
-}
-
-::ng-deep .mat-form-field.mat-focused {
-    .mat-form-field-label {
-        color: #ff884d;
-    }
-    .mat-form-field-ripple {
-        background-color: #ff884d;
-    }
-    .mat-form-field-required-marker {
-        color: #ff884d;
-    }
-    .mat-input-element {
-        color: #ff884d;
-    }
-}
-
-::ng-deep .mat-form-field.mat-form-field-invalid {
-    .mat-input-element {
-        color: #ff33cc;
-    }
-    .mat-form-field-label {
-        color: #ff33cc;
-        .mat-form-field-required-marker {
-            color: #ff33cc;
-        }
-    }
-    .mat-form-field-ripple {
-        background-color: #ff33cc;
-    }
+    
+    .mat-form-field-outline, .mat-form-field-appearance-outline.mat-form-field-disabled {
+        opacity: 0;
+    } 
 }

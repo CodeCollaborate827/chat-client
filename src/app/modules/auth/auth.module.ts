@@ -11,6 +11,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { DialogModule } from "@angular/cdk/dialog";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatStepperModule } from '@angular/material/stepper';
 import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ToastrModule } from "ngx-toastr";
     MatInputModule,
     DialogModule,
     MatDialogModule,
-    ToastrModule
+    ToastrModule,
+    MatStepperModule
   ],
 })
 export class AuthModule {}

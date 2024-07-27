@@ -1,89 +1,97 @@
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
-  <div class="flex w-full max-w-4xl">
-    <div class="bg-white p-8 rounded shadow-md w-1/2">
-      <div class="w-1/6">
-        <img
-          src="../../assets/san-marco.jpg"
-          alt="Descriptive Alt Text"
-          class="object-cover h-full w-full rounded-r"
-        />
-      </div>
+  <div class="flex w-1/4">
+    <div class="flex-grow bg-white p-8 rounded shadow-md">
+      <h1 class="text-2xl font-bold mb-4">ImaTalk</h1>
 
       <h1 class="text-2xl font-bold mb-4">Create an account</h1>
 
-      <h3 class="text-lg font-bold mb-4">
-        Sign up now and unlock exclusive access!
-      </h3>
+      <mat-stepper [linear]="true" #stepper>
+        <mat-step>
+          <form [formGroup]="registerStep1Form">
+            <ng-template matStepLabel>Fill out your name</ng-template>
+            <div class="mb-4">
+              <mat-form-field appearance="outline" class="w-full">
+                <input matInput formControlName="email" placeholder="Email" trimWhiteSpace/>
+                <mat-error *ngIf="controlHasError(registerStep1Form, 'required', 'email')">
+                  Please enter email
+                </mat-error>
+              </mat-form-field>
+            </div>
+    
+            <div class="mb-4">
+              <mat-form-field appearance="outline" class="w-full">
+                <input matInput type="password" formControlName="password" placeholder="Password" trimWhiteSpace/>
+                <mat-error *ngIf="controlHasError(registerStep1Form, 'required', 'password')">
+                  Please enter password
+                </mat-error>
+              </mat-form-field>
+            </div>
+    
+            <div class="mb-4">
+              <mat-form-field appearance="outline" class="w-full">
+                <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password" trimWhiteSpace/>
+                <mat-error *ngIf="controlHasError(registerStep1Form, 'required', 'password')">
+                  Please enter password
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <form [formGroup]="registerStep2Form">
+            <ng-template matStepLabel>Fill out your address</ng-template>
+            <div class="mb-4">
+              <mat-form-field appearance="outline">
+                <input matInput formControlName="username" placeholder="Username" trimWhiteSpace/>
+                <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'username')">
+                  Please enter username
+                </mat-error>
+              </mat-form-field>
+            </div>
 
-      <form
-        *ngIf="registerForm"
-        [formGroup]="registerForm"
-        (ngSubmit)="onSubmit()"
-      >
-      <div class="mb-4">
-        <mat-form-field appearance="outline">
-          <input matInput formControlName="username" placeholder="Username" class="mt-1 p-2 w-full border rounded" trimWhiteSpace/>
-          <mat-error *ngIf="controlHasError('required', 'username')">
-            Please enter username
-          </mat-error>
-        </mat-form-field>
-      </div>
+            <div class="mb-4">
+              <mat-form-field appearance="outline">
+                <input matInput formControlName="displayName" placeholder="Display Name" trimWhiteSpace/>
+                <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'username')">
+                  Please enter username
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <form [formGroup]="registerStep3Form">
+            <ng-template matStepLabel>Done</ng-template>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="stepper.reset()">Reset</button>
+              <div class="flex items-center justify-between">
+                <button
+                  type="btn btn-primary"
+                  (click)="onSubmit()"
+                >
+                  Register
+                </button>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+      </mat-stepper>
 
-      <div class="mb-4">
-        <mat-form-field appearance="outline">
-          <input matInput formControlName="email" placeholder="Email" class="mt-1 p-2 w-full border rounded" trimWhiteSpace/>
-          <mat-error *ngIf="controlHasError('required', 'email')">
-            Please enter email
-          </mat-error>
-        </mat-form-field>
-      </div>
 
-        <div class="mb-4">
-          <mat-form-field appearance="outline">
-            <input matInput type="password" formControlName="password" placeholder="Password" class="mt-1 p-2 w-full border rounded" trimWhiteSpace/>
-            <mat-error *ngIf="controlHasError('required', 'password')">
-              Please enter password
-            </mat-error>
-          </mat-form-field>
-        </div>
 
-        <div class="flex items-center justify-between">
-          <button
-            type="submit"
-            class="w-full bg-blue-500 text-white p-2 rounded"
-            [disabled]="!registerForm.valid"
-          >
-            Register
-          </button>
-        </div>
-
-        <div class="flex items-center justify-between">
-          <button
-            type="submit"
-            class="w-full bg-blue-500 text-white p-2 rounded"
-            [disabled]="!registerForm.valid"
-          >
-            Register
-          </button>
-        </div>
-      </form>
-
-      <div class="mt-4">
+      <div class="flex justify-center mt-4">
         <a routerLink="/auth/login" class="text-blue-500"
           >Have an account? Login Now</a
         >
       </div>
-
-      <h4 class="text-sm mt-4">hcd&#64;message.com</h4>
-    </div>
-
-    <div class="w-1/2">
-      <img
-        src="../../assets/san-marco.jpg"
-        alt="Descriptive Alt Text"
-        class="object-cover h-full w-full rounded-r"
-      />
     </div>
   </div>
-  <div *ngIf="error" class="text-red-500 text-xs italic">{{ error }}</div>
 </div>
