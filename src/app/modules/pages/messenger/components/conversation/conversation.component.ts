@@ -27,7 +27,7 @@ export class ConversationComponent implements OnInit, OnDestroy{
         id: 1,
         name: 'Đỗ Minh Quân'
       },
-      sentAt: '19:35',
+      sentAt: '19:31',
     },
     {
       content: 'chiến thần nào đấy?',
@@ -111,6 +111,7 @@ export class ConversationComponent implements OnInit, OnDestroy{
       repliedTo: {
         content: 'chiến thần nào đấy?'
       },
+      sentAt: '19:49',
       reactions: 
       { 
         heart: [
@@ -137,32 +138,7 @@ export class ConversationComponent implements OnInit, OnDestroy{
         avatar: '../../../../../../assets/avatar-1.png',
         name: 'Nguyễn Mạnh Hải'
       },
-    },
-    {
-      content: 'chưa chắc đã xuất sắc đâu',
-      own: false,
-      user: {
-        id: 2,
-        avatar: '../../../../../../assets/avatar-1.png',
-        name: 'Nguyễn Mạnh Hải'
-      },
-      reactions: 
-      { 
-        heart: [
-          {
-            name: "Nguyễn Mạnh Hải"
-          },
-          {
-            name: "Đỗ Doãn Vũ"
-          },
-        ],
-        haha: [
-          {
-            name: "Hồ Văn Hiếu"
-          },
-        ]
-      },
-      reactionCount: 3
+      sentAt: '19:50',
     },
     {
       content: 'ừ :v',
@@ -173,7 +149,20 @@ export class ConversationComponent implements OnInit, OnDestroy{
       user: {
         id: 1,
         name: 'Đỗ Minh Quân'
-      }
+      },
+      sentAt: '19:51',
+    },
+    {
+      content: ':vvvv',
+      own: true,
+      // user: {
+      //   avatar: '../../../../../../assets/avatar-1.png',
+      // },
+      user: {
+        id: 1,
+        name: 'Đỗ Minh Quân'
+      },
+      sentAt: '19:51',
     },
     {
       content: 'tốt nghiệp xuất sắc kh :v',
@@ -185,34 +174,8 @@ export class ConversationComponent implements OnInit, OnDestroy{
       },
       repliedTo: {
         content: 'xin chào mọi người?'
-      }
-    },
-    {
-      content: 'tốt nghiệp xuất sắc kh :v',
-      own: false,
-      user: {
-        id: 3,
-        avatar: '../../../../../../assets/avatar-2.png',
-        name: 'Hồ Văn Hiếu'
       },
-    },
-    {
-      content: 'tốt nghiệp xuất sắc kh :v',
-      own: false,
-      user: {
-        id: 3,
-        avatar: '../../../../../../assets/avatar-2.png',
-        name: 'Hồ Văn Hiếu'
-      },
-    },
-    {
-      content: 'tốt nghiệp xuất sắc kh :v',
-      own: false,
-      user: {
-        id: 3,
-        avatar: '../../../../../../assets/avatar-2.png',
-        name: 'Hồ Văn Hiếu'
-      },
+      sentAt: '19:51',
     },
     {
       content: 'tốt nghiệp xuất sắc kh :v',
@@ -242,7 +205,8 @@ export class ConversationComponent implements OnInit, OnDestroy{
           },
         ]
       },
-      reactionCount: 3
+      reactionCount: 3,
+      sentAt: '19:51',
     },
     {
       content: 'tốt nghiệp xuất sắc kh :v',
@@ -269,7 +233,8 @@ export class ConversationComponent implements OnInit, OnDestroy{
           },
         ]
       },
-      reactionCount: 3
+      reactionCount: 3,
+      sentAt: '19:51',
     },
   ]
   form?: FormGroup;

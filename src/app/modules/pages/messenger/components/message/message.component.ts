@@ -1,19 +1,24 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import * as dayjs from 'dayjs';
 
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss']
 })
-export class MessageComponent {
+export class MessageComponent implements OnInit {
   @Input() messages: any = [];
   @Input() message: any = {};
-  isMessageOptionsHidden: boolean = true;
+  isMessageOptionsHidden?: boolean;
 
   constructor(
-    
+
   ) {
 
+  }
+
+  ngOnInit(): void {
+    this.isMessageOptionsHidden = true;
   }
 
   toggleMessageOptions(hidden: boolean) {
@@ -31,6 +36,9 @@ export class MessageComponent {
     }
     const messageIndex = this.messages.indexOf(this.message);
 
+    // if (this.displayTimeline) {
+    //   const prev
+    // }
     // if the message is the first message
     if (messageIndex == this.messages.length - 1) {
       // if the message and the next message are of the same user
@@ -148,6 +156,25 @@ export class MessageComponent {
   
     const messageIndex = this.messages.indexOf(this.message);
     return messageIndex === this.messages.length - 1 || this.messages[messageIndex - 1]?.user?.id !== this.message.user.id;
+  }
+
+  get displayTimeline(): boolean {
+    // const messageIndex = this.messages.indexOf(this.message)
+    // if (messageIndex == this.messages[this.messages.length + 1]) return true;
+    // if (messageIndex == 0) return true;
+    // const previousMessage = this.messages[messageIndex - 1];
+    // console.log((dayjs(this.message.sentAt, 'HH:mm')))
+    // if (dayjs(dayjs(this.message.sentAt).format('HH:mm')).diff(dayjs(previousMessage.sentAt).format('HH:mm'), 'minute') > 5) {
+    //   console.log('display timeline')
+    //   return true;
+    // }
+    const messageIndex = this.messages.indexOf(this.message);
+    return [1, 2, 3].includes(messageIndex);
+  }
+
+  get displaySeen(): boolean {
+    const messageIndex = this.messages.indexOf(this.message);
+    return messageIndex == 0;
   }
 
   getReactionIcon(type: string): string {

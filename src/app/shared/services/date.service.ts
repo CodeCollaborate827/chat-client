@@ -24,6 +24,10 @@ export class DateService {
     return dayjs(date1).diff(date2, 'day');
   }
 
+  public static getMinutesBetween(date1: number | string | Date, date2: number | string | Date): number {
+    return dayjs(date1).diff(date2, 'minute');
+  }
+
   public static getHoursLeft(dateTime: number | string | Date): number { 
     return dayjs(dateTime).diff(new Date(), 'hour');
   }
