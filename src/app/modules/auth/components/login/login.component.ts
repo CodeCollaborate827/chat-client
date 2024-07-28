@@ -45,6 +45,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     return keys[0] === validation && (control.dirty || control.touched);
   }
 
+  loginWithGoogle() {
+    // Implement Google login logic here
+  }
+
+  loginWithFacebook() {
+    // Implement YouTube login logic here
+  }
+
   private prepareData() {
     const loginData = this.form?.value;
     console.log(loginData);
