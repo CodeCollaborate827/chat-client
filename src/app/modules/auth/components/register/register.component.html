@@ -1,15 +1,18 @@
-<div class="flex items-center justify-center min-h-screen bg-gray-100">
-  <div class="flex w-1/4">
-    <div class="flex-grow bg-white p-8 rounded shadow-md">
+<div class="w-full flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="register-container flex max-w-4xl p-3 card">
+    <div class="w-1/2">
+      <img src="../../assets/login-img.jpg" alt="Descriptive Alt Text" class="object-cover h-full w-full rounded-r">
+    </div>
+    <div class="flex-grow bg-white p-8 w-1/2">
       <h1 class="text-2xl font-bold mb-4">ImaTalk</h1>
 
-      <h1 class="text-2xl font-bold mb-4">Create an account</h1>
+      <h1 class="text-2xl font-bold mb-2">Create an account</h1>
 
       <mat-stepper [linear]="true" #stepper>
         <mat-step>
           <form [formGroup]="registerStep1Form">
-            <ng-template matStepLabel>Fill out your name</ng-template>
-            <div class="mb-4">
+            <ng-template matStepLabel>Account Information</ng-template>
+            <div class="mb-1">
               <mat-form-field appearance="outline" class="w-full">
                 <input matInput formControlName="email" placeholder="Email" trimWhiteSpace/>
                 <mat-error *ngIf="controlHasError(registerStep1Form, 'required', 'email')">
@@ -18,7 +21,7 @@
               </mat-form-field>
             </div>
     
-            <div class="mb-4">
+            <div class="mb-1">
               <mat-form-field appearance="outline" class="w-full">
                 <input matInput type="password" formControlName="password" placeholder="Password" trimWhiteSpace/>
                 <mat-error *ngIf="controlHasError(registerStep1Form, 'required', 'password')">
@@ -27,7 +30,7 @@
               </mat-form-field>
             </div>
     
-            <div class="mb-4">
+            <div class="mb-1">
               <mat-form-field appearance="outline" class="w-full">
                 <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password" trimWhiteSpace/>
                 <mat-error *ngIf="controlHasError(registerStep1Form, 'required', 'password')">
@@ -35,16 +38,16 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div>
-              <button mat-button matStepperNext>Next</button>
+            <div class="flex justify-center">
+              <button mat-button matStepperNext class="btn btn-primary">Next</button>
             </div>
           </form>
         </mat-step>
         <mat-step>
           <form [formGroup]="registerStep2Form">
-            <ng-template matStepLabel>Fill out your address</ng-template>
-            <div class="mb-4">
-              <mat-form-field appearance="outline">
+            <ng-template matStepLabel>User Information</ng-template>
+            <div class="mb-1">
+              <mat-form-field appearance="outline" class="w-full">
                 <input matInput formControlName="username" placeholder="Username" trimWhiteSpace/>
                 <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'username')">
                   Please enter username
@@ -52,34 +55,52 @@
               </mat-form-field>
             </div>
 
-            <div class="mb-4">
-              <mat-form-field appearance="outline">
+            <div class="mb-1">
+              <mat-form-field appearance="outline" class="w-full">
                 <input matInput formControlName="displayName" placeholder="Display Name" trimWhiteSpace/>
-                <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'username')">
-                  Please enter username
+                <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'displayName')">
+                  Display name is required
                 </mat-error>
               </mat-form-field>
             </div>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+
+            <div class="mb-1">
+              <mat-form-field appearance="outline" class="w-full">
+                <input matInput formControlName="dateOfBirth" placeholder="Date Of Birth" trimWhiteSpace/>
+                <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'dateOfBirth')">
+                  Display name is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="mb-1">
+              <mat-form-field appearance="outline" class="w-full">
+                <input matInput formControlName="city" placeholder="City" trimWhiteSpace/>
+                <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'city')">
+                  Display name is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="flex items-center justify-center">
+              <button mat-button matStepperPrevious class="btn btn-outline-primary mr-3">Back</button>
+              <button mat-button matStepperNext class="btn btn-primary">Next</button>
             </div>
           </form>
         </mat-step>
         <mat-step>
           <form [formGroup]="registerStep3Form">
-            <ng-template matStepLabel>Done</ng-template>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button (click)="stepper.reset()">Reset</button>
-              <div class="flex items-center justify-between">
-                <button
-                  type="btn btn-primary"
-                  (click)="onSubmit()"
-                >
-                  Register
-                </button>
-              </div>
+            <ng-template matStepLabel>Avatar</ng-template>
+            <div class="flex justify-center">
+              <button mat-button matStepperPrevious class="btn btn-primary mr-3">Back</button>
+              <button mat-button (click)="stepper.reset()" class="btn btn-outline-primary">Reset</button>
+            </div>
+            <div class="flex items-center justify-center mt-4">
+              <button
+                class="btn btn-primary"
+                (click)="onSubmit()"
+              >
+                Register
+              </button>
             </div>
           </form>
         </mat-step>
@@ -93,5 +114,6 @@
         >
       </div>
     </div>
+    
   </div>
 </div>

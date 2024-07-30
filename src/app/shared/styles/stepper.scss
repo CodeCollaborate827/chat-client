@@ -1,0 +1,14 @@
+@import "./variables.scss";
+
+
+.mat-step-icon-selected {
+    background-color: $color-primary !important;
+}
+
+.mat-step-icon-state-edit {
+    background-color: $color-primary !important;
+}
+
+.mat-horizontal-stepper-header {
+    padding: 0 8px !important;
+}
