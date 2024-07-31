@@ -1,5 +1,5 @@
 <div class="w-full flex items-center justify-center min-h-screen bg-gray-100">
-  <div class="register-container flex max-w-4xl p-3 card">
+  <div class="register-container flex max-w-6xl p-3 card">
     <div class="w-1/2">
       <img src="../../assets/login-img.jpg" alt="Descriptive Alt Text" class="object-cover h-full w-full rounded-r">
     </div>
@@ -90,6 +90,12 @@
         <mat-step>
           <form [formGroup]="registerStep3Form">
             <ng-template matStepLabel>Avatar</ng-template>
+            <div class="register-avatar relative">
+              <img src="../../../../../assets/default-avatar.jpg" alt="avatar">
+              <div class="register-change-avatar absolute w-full flex justify-center">
+                <mat-icon>camera_alt</mat-icon>
+              </div>
+            </div>
             <div class="flex justify-center">
               <button mat-button matStepperPrevious class="btn btn-primary mr-3">Back</button>
               <button mat-button (click)="stepper.reset()" class="btn btn-outline-primary">Reset</button>

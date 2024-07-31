@@ -1,3 +1,13 @@
 .register-container {
   height: 566px;
+
+  .register-avatar {
+    width: 200px;
+    height: 200px;
+
+    .register-change-avatar {
+      right: 20px;
+      bottom: 40px
+    }
+  }
 }
