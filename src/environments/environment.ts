@@ -1,3 +1,4 @@
 export const environment = {
-  apiUrl: 'http://localhost:3000',
+  authServiceApiUrl: 'http://localhost:8081/api',
+  userServiceApiUrl: 'http://localhost:8082/api',
 };

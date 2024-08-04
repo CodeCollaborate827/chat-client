@@ -1,7 +1,7 @@
 <div class="w-full flex items-center justify-center min-h-screen bg-gray-100">
   <div class="register-container flex max-w-6xl p-3 card">
-    <div class="w-1/2">
-      <img src="../../assets/login-img.jpg" alt="Descriptive Alt Text" class="object-cover h-full w-full rounded-r">
+    <div class="w-1/2 bg-white p-4">
+      <img src="../../assets/login-img.jpg" alt="Descriptive Alt Text" class="object-cover h-full w-full">
     </div>
     <div class="flex-grow bg-white p-8 w-1/2">
       <h1 class="text-2xl font-bold mb-4">ImaTalk</h1>
@@ -12,102 +12,146 @@
         <mat-step>
           <form [formGroup]="registerStep1Form">
             <ng-template matStepLabel>Account Information</ng-template>
-            <div class="mb-1">
-              <mat-form-field appearance="outline" class="w-full">
-                <input matInput formControlName="email" placeholder="Email" trimWhiteSpace/>
-                <mat-error *ngIf="controlHasError(registerStep1Form, 'required', 'email')">
-                  Please enter email
-                </mat-error>
-              </mat-form-field>
-            </div>
-    
-            <div class="mb-1">
-              <mat-form-field appearance="outline" class="w-full">
-                <input matInput type="password" formControlName="password" placeholder="Password" trimWhiteSpace/>
-                <mat-error *ngIf="controlHasError(registerStep1Form, 'required', 'password')">
-                  Please enter password
-                </mat-error>
-              </mat-form-field>
-            </div>
-    
-            <div class="mb-1">
-              <mat-form-field appearance="outline" class="w-full">
-                <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password" trimWhiteSpace/>
-                <mat-error *ngIf="controlHasError(registerStep1Form, 'required', 'password')">
-                  Please enter password
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="flex justify-center">
-              <button mat-button matStepperNext class="btn btn-primary">Next</button>
-            </div>
+            <ng-template matStepContent>
+              <div class="mb-2">
+                <label class="block font-medium pl-2 mb-1">Email
+                  <span class="required">*</span>
+                </label>
+                <mat-form-field appearance="outline" class="w-full">
+                  <input matInput formControlName="email" placeholder="Email" trimWhiteSpace/>
+                  <mat-error *ngIf="controlHasError(registerStep1Form, 'required', 'email')">
+                    Email is required
+                  </mat-error>
+                  <mat-error *ngIf="controlHasError(registerStep1Form, 'email', 'email')">
+                    Please enter the correct email format
+                  </mat-error>
+                </mat-form-field>
+              </div>
+      
+              <div class="mb-2">
+                <label class="block font-medium pl-2 mb-1">Password
+                  <span class="required">*</span>
+                </label>
+                <mat-form-field appearance="outline" class="w-full">
+                  <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password" trimWhiteSpace/>
+                  <mat-icon matSuffix (click)="toggleVisibilityPassword()">{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                  <mat-error *ngIf="controlHasError(registerStep1Form, 'required', 'password')">
+                    Password is required
+                  </mat-error>
+                  <mat-error *ngIf="controlHasError(registerStep1Form, 'password', 'password')">
+                    Password must have at least 1 number, 1 capital letter and 1 special character.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+      
+              <div class="mb-1">
+                <label class="block font-medium pl-2 mb-1">Confirm Password
+                  <span class="required">*</span>
+                </label>
+                <mat-form-field appearance="outline" class="w-full">
+                  <input matInput [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Confirm Password" trimWhiteSpace/>
+                  <mat-icon matSuffix (click)="toggleVisibilityConfirmPassword()">{{ showConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                  <mat-error *ngIf="controlHasError(registerStep1Form, 'confirmPassword', 'confirmPassword')">
+                    Passwords do not match
+                  </mat-error>
+                </mat-form-field>
+              </div>            
+              <div class="flex justify-center">
+                <button mat-button matStepperNext class="btn btn-primary btn-md">Next</button>
+              </div>
+            </ng-template>
+
           </form>
         </mat-step>
         <mat-step>
           <form [formGroup]="registerStep2Form">
             <ng-template matStepLabel>User Information</ng-template>
-            <div class="mb-1">
-              <mat-form-field appearance="outline" class="w-full">
-                <input matInput formControlName="username" placeholder="Username" trimWhiteSpace/>
-                <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'username')">
-                  Please enter username
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <div class="mb-1">
-              <mat-form-field appearance="outline" class="w-full">
-                <input matInput formControlName="displayName" placeholder="Display Name" trimWhiteSpace/>
-                <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'displayName')">
-                  Display name is required
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <div class="mb-1">
-              <mat-form-field appearance="outline" class="w-full">
-                <input matInput formControlName="dateOfBirth" placeholder="Date Of Birth" trimWhiteSpace/>
-                <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'dateOfBirth')">
-                  Display name is required
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <div class="mb-1">
-              <mat-form-field appearance="outline" class="w-full">
-                <input matInput formControlName="city" placeholder="City" trimWhiteSpace/>
-                <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'city')">
-                  Display name is required
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="flex items-center justify-center">
-              <button mat-button matStepperPrevious class="btn btn-outline-primary mr-3">Back</button>
-              <button mat-button matStepperNext class="btn btn-primary">Next</button>
-            </div>
+            <ng-template matStepContent>
+              <div class="mb-1">
+                <label class="block font-medium pl-2 mb-1">User Name
+                  <span class="required">*</span>
+                </label>
+                <mat-form-field appearance="outline" class="w-full">
+                  <input matInput formControlName="username" placeholder="User Name" trimWhiteSpace/>
+                  <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'username')">
+                    Please enter user name
+                  </mat-error>
+                </mat-form-field>
+              </div>
+  
+              <div class="mb-1">
+                <label class="block font-medium pl-2 mb-1">Display Name
+                  <span class="required">*</span>
+                </label>
+                <mat-form-field appearance="outline" class="w-full">
+                  <input matInput formControlName="displayName" placeholder="Display Name" trimWhiteSpace/>
+                  <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'displayName')">
+                    Display name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+  
+              <div class="mb-1">
+                <label class="block font-medium pl-2 mb-1">Date of Birth
+                  <span class="required">*</span>
+                </label>
+                <mat-form-field appearance="outline" class="w-full">
+                  <input matInput formControlName="dateOfBirth" placeholder="Date Of Birth" [matDatepicker]="dateOfBirth" [disabled]="true" (click)="dateOfBirth.open()"/>
+                  <mat-datepicker-toggle matIconSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+                  <mat-datepicker #dateOfBirth></mat-datepicker>
+                  <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'dateOfBirth')">
+                    Display name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+  
+              <div class="mb-1">
+                <label class="block font-medium pl-2 mb-1">City
+                  <span class="required">*</span>
+                </label>
+                <mat-form-field appearance="outline" class="w-full">
+                  <mat-select formControlName="city" placeholder="City">
+                    <!-- <input (keyup)="onSearchCity($event)"> -->
+                    <mat-option *ngFor="let city of cities" [value]="city">
+                      {{ city }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'city')">
+                    Display name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="flex items-center justify-center">
+                <button mat-button matStepperPrevious class="btn btn-outline-primary mr-3 btn-md">Back</button>
+                <button mat-button matStepperNext class="btn btn-primary btn-md">Next</button>
+              </div>
+            </ng-template>
+            
           </form>
         </mat-step>
         <mat-step>
           <form [formGroup]="registerStep3Form">
             <ng-template matStepLabel>Avatar</ng-template>
-            <div class="register-avatar relative">
-              <img src="../../../../../assets/default-avatar.jpg" alt="avatar">
-              <div class="register-change-avatar absolute w-full flex justify-center">
-                <mat-icon>camera_alt</mat-icon>
+            <ng-template matStepContent>
+              <div class="register-avatar relative">
+                <img src="../../../../../assets/default-avatar.jpg" alt="avatar">
+                <div class="register-change-avatar absolute w-full flex justify-center">
+                  <mat-icon>camera_alt</mat-icon>
+                </div>
               </div>
-            </div>
-            <div class="flex justify-center">
-              <button mat-button matStepperPrevious class="btn btn-primary mr-3">Back</button>
-              <button mat-button (click)="stepper.reset()" class="btn btn-outline-primary">Reset</button>
-            </div>
-            <div class="flex items-center justify-center mt-4">
-              <button
-                class="btn btn-primary"
-                (click)="onSubmit()"
-              >
-                Register
-              </button>
-            </div>
+              <div class="flex justify-center">
+                <button mat-button matStepperPrevious class="btn btn-primary btn-md mr-3">Back</button>
+                <button mat-button (click)="stepper.reset()" class="btn btn-outline-primary btn-md">Reset</button>
+              </div>
+              <div class="flex items-center justify-center mt-4">
+                <button
+                  class="btn btn-primary btn-md"
+                  (click)="onSubmit()"
+                >
+                  Register
+                </button>
+              </div>
+            </ng-template>
           </form>
         </mat-step>
       </mat-stepper>
