@@ -1,15 +1,15 @@
-<div class="w-full flex items-center justify-center min-h-screen bg-gray-100">
-  <div class="register-container flex max-w-6xl p-3 card">
+<div class="register w-full flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="register__container flex p-3 card" style="max-width: 112rem;">
     <div class="w-1/2 bg-white p-4">
       <img src="../../assets/login-img.jpg" alt="Descriptive Alt Text" class="object-cover h-full w-full">
     </div>
     <div class="flex-grow bg-white p-8 w-1/2">
-      <h1 class="text-2xl font-bold mb-4">ImaTalk</h1>
+      <h1 class="text-4xl font-bold mb-4">ImaTalk</h1>
 
       <h1 class="text-2xl font-bold mb-2">Create an account</h1>
 
-      <mat-stepper [linear]="true" #stepper>
-        <mat-step>
+      <mat-stepper linear #stepper [animationDuration]="'500'">
+        <mat-step [stepControl]="registerStep1Form" [editable]="false">
           <form [formGroup]="registerStep1Form">
             <ng-template matStepLabel>Account Information</ng-template>
             <ng-template matStepContent>
@@ -51,21 +51,24 @@
                 <mat-form-field appearance="outline" class="w-full">
                   <input matInput [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Confirm Password" trimWhiteSpace/>
                   <mat-icon matSuffix (click)="toggleVisibilityConfirmPassword()">{{ showConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                  <mat-error *ngIf="controlHasError(registerStep1Form, 'required', 'confirmPassword')">
+                    Confirm password is required
+                  </mat-error>
                   <mat-error *ngIf="controlHasError(registerStep1Form, 'confirmPassword', 'confirmPassword')">
                     Passwords do not match
                   </mat-error>
                 </mat-form-field>
               </div>            
               <div class="flex justify-center">
-                <button mat-button matStepperNext class="btn btn-primary btn-md">Next</button>
+                <button mat-button matStepperNext class="btn btn-primary btn-md" (click)="onClickNextStep(1)">Next</button>
               </div>
             </ng-template>
 
           </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="registerStep2Form" [editable]="false">
           <form [formGroup]="registerStep2Form">
-            <ng-template matStepLabel>User Information</ng-template>
+            <ng-template matStepLabel (click)="onClickNextStep(1)">User Information</ng-template>
             <ng-template matStepContent>
               <div class="mb-1">
                 <label class="block font-medium pl-2 mb-1">User Name
@@ -122,34 +125,34 @@
                 </mat-form-field>
               </div>
               <div class="flex items-center justify-center">
-                <button mat-button matStepperPrevious class="btn btn-outline-primary mr-3 btn-md">Back</button>
-                <button mat-button matStepperNext class="btn btn-primary btn-md">Next</button>
+                <button mat-button matStepperNext class="btn btn-primary btn-md" (click)="onClickNextStep(2)" [disabled]="registerStep2Form.invalid">Next</button>
               </div>
             </ng-template>
             
           </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="registerStep3Form" [editable]="false">
           <form [formGroup]="registerStep3Form">
             <ng-template matStepLabel>Avatar</ng-template>
             <ng-template matStepContent>
-              <div class="register-avatar relative">
+              <div class="register__avatar relative">
                 <img src="../../../../../assets/default-avatar.jpg" alt="avatar">
-                <div class="register-change-avatar absolute w-full flex justify-center">
+                <div class="register__change-avatar absolute w-full flex justify-center">
                   <mat-icon>camera_alt</mat-icon>
                 </div>
               </div>
               <div class="flex justify-center">
-                <button mat-button matStepperPrevious class="btn btn-primary btn-md mr-3">Back</button>
-                <button mat-button (click)="stepper.reset()" class="btn btn-outline-primary btn-md">Reset</button>
-              </div>
-              <div class="flex items-center justify-center mt-4">
+                <button mat-button matStepperPrevious class="btn btn-outline-primary btn-md mr-3">Reset</button>
                 <button
+                  mat-button
                   class="btn btn-primary btn-md"
                   (click)="onSubmit()"
                 >
                   Register
-                </button>
+                </button>             
+              </div>
+              <div class="flex items-center justify-center mt-4">
+                
               </div>
             </ng-template>
           </form>

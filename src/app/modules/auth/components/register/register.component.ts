@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.registerStep1Form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.compose([Validators.required, passwordValidator])],
-      confirmPassword: ['', Validators.compose([confirmPasswordValidator])],
+      confirmPassword: ['', Validators.compose([Validators.required, confirmPasswordValidator])],
     })
     this.registerStep2Form = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
@@ -53,6 +53,26 @@ export class RegisterComponent implements OnInit, OnDestroy {
       city: ['', [Validators.required]]
     })
     this.registerStep3Form = this.fb.group({})
+    this.registerStep1Form.get('password')?.valueChanges.subscribe(() => {
+      this.registerStep1Form.get('confirmPassword')?.updateValueAndValidity({ emitEvent: false, onlySelf: true });
+    })
+    this.registerStep1Form.get('confirmPassword')?.valueChanges.subscribe(() => {
+      this.registerStep1Form.get('password')?.updateValueAndValidity({ emitEvent: false, onlySelf: true });
+    })
+  }
+
+  onClickNextStep(step: number) {
+    if (step == 1) {
+      this.registerStep1Form.markAllAsTouched()
+      if (this.registerStep1Form && this.registerStep1Form.invalid) {
+        return;
+      }
+    } else if (step == 2) {
+      this.registerStep2Form.markAllAsTouched()
+      if (this.registerStep2Form && this.registerStep2Form.invalid) {
+        return;
+      }
+    }
   }
 
   onSubmit() {

@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@import "../abstracts/variables.scss";
 
 
 .mat-step-icon-selected {
@@ -6,6 +6,10 @@
 }
 
 .mat-step-icon-state-edit {
+    background-color: $color-primary !important;
+}
+
+.mat-step-icon-state-done {
     background-color: $color-primary !important;
 }
 

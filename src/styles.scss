@@ -35,42 +35,24 @@ $Chat-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 @import '@ctrl/ngx-emoji-mart/picker';
-@import "./app/shared/styles/button.scss";
-@import "./app/shared/styles/text.scss";
-@import "./app/shared/styles/loading.scss";
-@import "./app/shared/styles/icon.scss";
-@import "./app/shared/styles/variables.scss";
-@import "./app/shared/styles/input.scss";
-@import "./app/shared/styles/tooltip.scss";
-@import "./app/shared/styles/stepper.scss";
+
+@import "./app/shared/styles/abstracts/variables";
+@import "./app/shared/styles/abstracts/functions";
+@import "./app/shared/styles/abstracts/mixins";
+
+@import "./app/shared/styles/base/animations";
+@import "./app/shared/styles/base/base";
+@import "./app/shared/styles/base/typography";
+@import "./app/shared/styles/base/utilities";
+
+@import "./app/shared/styles/components/button";
+@import "./app/shared/styles/components/loading";
+@import "./app/shared/styles/components/icon";
+@import "./app/shared/styles/components/input";
+@import "./app/shared/styles/components/tooltip";
+@import "./app/shared/styles/components/stepper";
 
 
-html, body { 
-  height: 100%; 
-}
-body { 
-  margin: auto; 
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 400;
-  color: $color-text;
-  background-color: $color-background;
-}
-
-.card {
-  background-color: $color-card !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  margin: 12px 6px;
-}
-
-.long-text {
-  word-wrap: break-word; /* Break long words */
-  overflow-wrap: break-word; /* Break long words */
-  white-space: normal; /* Allow the text to wrap to new lines */
-  word-break: break-word;
-}
 
 .mat-icon {
   width: 24px;
@@ -81,15 +63,6 @@ body {
   cursor: pointer;
 }
 
-.tooltip {
-  white-space: pre-line; 
-  display: block; 
-  text-align: left;
-}
-
-.required {
-  color: #f44336;
-}
 
 
 // :root {

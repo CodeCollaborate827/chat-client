@@ -64,6 +64,10 @@
     opacity: 0;
 } 
 
+.mdc-text-field--outlined {
+    --mdc-outlined-text-field-container-shape: 28px !important;
+}
+
 .mat-mdc-form-field-error {
     font-size: 12px !important;
 }
