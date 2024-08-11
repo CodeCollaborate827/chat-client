@@ -14,7 +14,6 @@ import { User } from 'src/app/shared';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   error: string | null = null;
-  registerForm?: FormGroup;
   registerStep1Form: FormGroup = new FormGroup({});
   registerStep2Form: FormGroup = new FormGroup({});
   registerStep3Form: FormGroup = new FormGroup({});
@@ -35,12 +34,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   initializeForm() {
-    this.registerForm = this.fb.group({
-      city: [],
-      avatar: [],
-      dateOfBirth: []
-    });
-
     this.registerStep1Form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.compose([Validators.required, passwordValidator])],
@@ -76,11 +69,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.registerStep1Form)
-    if (this.registerForm && this.registerForm.invalid) {
-      this.focusFirstInvalidControl();
-      return;
-    } 
+    console.log(this.registerStep1Form);
     this.prepareData();
     this.authService.register(this.registerData).subscribe((res) => console.log(res))
   }
@@ -118,21 +107,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       dateOfBirth: this.registerStep2Form.get('dateOfBirth')?.value,
       city: this.registerStep2Form.get('city')?.value,
       avatar: this.registerStep3Form.get('avatar')?.value ?? ''
-    }
-  }
-
-  private focusFirstInvalidControl() { 
-    if (!this.registerForm) return;
-    this.registerForm.markAllAsTouched();
-    for (const key of Object.keys(this.registerForm.controls)) {
-      if (this.registerForm.controls[key].invalid) {
-        setTimeout(() => { 
-          const invalidControl = this.elementRef.nativeElement.querySelector(['[formControlName="' + key + '"]']);
-          if (!invalidControl) return;
-          invalidControl.focus();
-        }, 100);
-        break;
-      }
     }
   }
 
