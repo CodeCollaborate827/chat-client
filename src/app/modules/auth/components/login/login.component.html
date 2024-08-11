@@ -10,7 +10,7 @@
 
       <h3 class="fs-14 mb-4">Please login to use the platform</h3>
 
-      <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="mb-1">
           <mat-form-field appearance="outline">
             <input matInput formControlName="username" placeholder="Username" class="w-full border rounded" trimWhiteSpace/>
@@ -22,6 +22,7 @@
         <div class="mb-1">
           <mat-form-field appearance="outline">
             <input matInput type="password" formControlName="password" placeholder="Password" class="border rounded" trimWhiteSpace/>
+            <mat-icon matSuffix (click)="toggleVisibilityPassword()">{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
             <mat-error *ngIf="controlHasError('required', 'password')">
               Please enter password
             </mat-error>

@@ -8,3 +8,8 @@ export interface UserRegister {
     dateOfBirth?: string;
     city?: string;
 }
+
+export interface UserLogin {
+    email?: string;
+    password?: string;
+}
