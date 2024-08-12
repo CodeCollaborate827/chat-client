@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
+import { UserLogin } from '../../models';
 
 @Component({
   selector: 'app-login',
@@ -8,20 +10,23 @@ import { Subject } from 'rxjs';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  form?: FormGroup;
+  loginForm?: FormGroup;
+  showPassword?: boolean = false;
+  loginData: UserLogin = {} as UserLogin;
 
   private readonly destroy$ = new Subject();
 
   constructor(
     private formBuilder: FormBuilder,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private authService: AuthService
   ) { }
   ngOnInit(): void {
     this.initializeForm();
   }
 
   initializeForm() {
-    this.form = this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
@@ -29,15 +34,20 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 
   onSubmit() {
-    if (this.form && this.form.invalid) {
+    if (this.loginForm && this.loginForm.invalid) {
       this.focusFirstInvalidControl();
       return;
     } 
     this.prepareData();
+    this.authService.login(this.loginData).subscribe((res) => console.log(res))
+  }
+
+  toggleVisibilityPassword() {
+    this.showPassword = !this.showPassword;
   }
 
   controlHasError(validation: string, controlName: string): boolean { 
-    const control = this.form?.controls[controlName];
+    const control = this.loginForm?.controls[controlName];
     if (!control) return false;
     const errors = control.errors;
     if (!errors) return false;
@@ -46,23 +56,21 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   loginWithGoogle() {
-    // Implement Google login logic here
   }
 
   loginWithFacebook() {
-    // Implement YouTube login logic here
   }
 
   private prepareData() {
-    const loginData = this.form?.value;
+    const loginData = this.loginForm?.value;
     console.log(loginData);
   }
 
   private focusFirstInvalidControl() { 
-    if (!this.form) return;
-    this.form.markAllAsTouched();
-    for (const key of Object.keys(this.form.controls)) {
-      if (this.form.controls[key].invalid) {
+    if (!this.loginForm) return;
+    this.loginForm.markAllAsTouched();
+    for (const key of Object.keys(this.loginForm.controls)) {
+      if (this.loginForm.controls[key].invalid) {
         setTimeout(() => { 
           const invalidControl = this.elementRef.nativeElement.querySelector(['[formControlName="' + key + '"]']);
           if (!invalidControl) return;
