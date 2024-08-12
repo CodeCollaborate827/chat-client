@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     } 
     this.prepareData();
-    this.authService.register(this.loginData).subscribe((res) => console.log(res))
+    this.authService.login(this.loginData).subscribe((res) => console.log(res))
   }
 
   toggleVisibilityPassword() {
