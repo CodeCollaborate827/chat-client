@@ -77,7 +77,7 @@
                 <mat-form-field appearance="outline" class="w-full">
                   <input matInput formControlName="username" placeholder="User Name" trimWhiteSpace/>
                   <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'username')">
-                    Please enter user name
+                    User name is required
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -99,11 +99,11 @@
                   <span class="required">*</span>
                 </label>
                 <mat-form-field appearance="outline" class="w-full">
-                  <input matInput formControlName="dateOfBirth" placeholder="Date Of Birth" [matDatepicker]="dateOfBirth" [disabled]="true" (click)="dateOfBirth.open()"/>
+                  <input matInput formControlName="dateOfBirth" placeholder="Date Of Birth" [matDatepicker]="dateOfBirth" (click)="dateOfBirth.open()"/>
                   <mat-datepicker-toggle matIconSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
                   <mat-datepicker #dateOfBirth></mat-datepicker>
                   <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'dateOfBirth')">
-                    Display name is required
+                    Date of birth name is required
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -120,7 +120,7 @@
                     </mat-option>
                   </mat-select>
                   <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'city')">
-                    Display name is required
+                    City name is required
                   </mat-error>
                 </mat-form-field>
               </div>
