@@ -13,6 +13,7 @@ import { DialogModule } from "@angular/cdk/dialog";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatStepperModule } from '@angular/material/stepper';
 import { ToastrModule } from "ngx-toastr";
+import { NgSelectModule } from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ToastrModule } from "ngx-toastr";
     DialogModule,
     MatDialogModule,
     ToastrModule,
-    MatStepperModule
+    MatStepperModule,
+    NgSelectModule
   ],
 })
 export class AuthModule {}
