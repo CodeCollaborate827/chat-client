@@ -14,6 +14,7 @@ import { PickerComponent, PickerModule } from '@ctrl/ngx-emoji-mart';
 import { SharedModule } from "src/app/shared/shared.module";
 import { UserAvatarModule } from "src/app/shared/components/user-avatar";
 import { FormsModule } from "@angular/forms";
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FormsModule } from "@angular/forms";
     UserAvatarModule,
     PickerComponent,
     PickerModule,
-    FormsModule
+    FormsModule,
+    InfiniteScrollModule
   ],
 })
 export class MessengerModule { }

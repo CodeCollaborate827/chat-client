@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@import "../abstracts/variables.scss";
 
 .btn {
     border-radius: 23px;
@@ -34,4 +34,8 @@
 
 .btn-secondary {
     background-color: var(--color-secondary);
+}
+
+.btn-md {
+    padding: 10px 50px !important;
 }

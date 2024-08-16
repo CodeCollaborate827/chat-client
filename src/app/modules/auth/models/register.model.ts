@@ -8,3 +8,4 @@ export interface UserRegister {
     dateOfBirth?: string;
     city?: string;
 }
+

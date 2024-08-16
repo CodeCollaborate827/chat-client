@@ -1,0 +1,17 @@
+.tooltip {
+    white-space: pre-line; 
+    display: block; 
+    text-align: left;
+}
+  
+.required {
+    color: #f44336;
+}
+
+.card {
+    background-color: $color-card !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin: 12px 6px;
+}
+  
