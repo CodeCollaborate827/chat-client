@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-friend-list',
   templateUrl: './friend-list.component.html',
-  styleUrls: ['./friend-list.component.css'],
+  styleUrls: ['./friend-list.component.scss'],
 })
 export class FriendListComponent {
   messages = Array.from({ length: 20 }).map((_, i) => `Message #${i}`);

@@ -8,8 +8,8 @@
 
       <h1 class="text-2xl font-bold mb-2">Create an account</h1>
 
-      <mat-stepper linear #stepper [animationDuration]="'500'">
-        <mat-step [stepControl]="registerStep1Form" [editable]="false">
+      <mat-stepper #stepper [animationDuration]="'500'">
+        <mat-step [stepControl]="registerStep1Form">
           <form [formGroup]="registerStep1Form">
             <ng-template matStepLabel>Account Information</ng-template>
             <ng-template matStepContent>
@@ -66,7 +66,7 @@
 
           </form>
         </mat-step>
-        <mat-step [stepControl]="registerStep2Form" [editable]="false">
+        <mat-step [stepControl]="registerStep2Form">
           <form [formGroup]="registerStep2Form">
             <ng-template matStepLabel (click)="onClickNextStep(1)">User Information</ng-template>
             <ng-template matStepContent>
@@ -112,17 +112,17 @@
                 <label class="block font-medium pl-2 mb-1">City
                   <span class="required">*</span>
                 </label>
-                <mat-form-field appearance="outline" class="w-full">
-                  <mat-select formControlName="city" placeholder="City">
-                    <!-- <input (keyup)="onSearchCity($event)"> -->
-                    <mat-option *ngFor="let city of cities" [value]="city">
-                      {{ city }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="controlHasError(registerStep2Form, 'required', 'city')">
-                    City name is required
-                  </mat-error>
-                </mat-form-field>
+                  <ng-select
+                    formControlName="city"
+                    ngSelectMat
+                    [items]="cities"
+                    placeholder="City"
+                    [searchable]="true"
+                    bindLabel="name"
+
+                  >
+
+                  </ng-select>
               </div>
               <div class="flex items-center justify-center">
                 <button mat-button matStepperNext class="btn btn-primary btn-md" (click)="onClickNextStep(2)" [disabled]="registerStep2Form.invalid">Next</button>

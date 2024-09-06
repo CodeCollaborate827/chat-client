@@ -14,6 +14,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatStepperModule } from '@angular/material/stepper';
 import { ToastrModule } from "ngx-toastr";
 import { NgSelectModule } from "@ng-select/ng-select";
+import { MatDatepickerModule } from "@angular/material/datepicker";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NgSelectModule } from "@ng-select/ng-select";
     MatDialogModule,
     ToastrModule,
     MatStepperModule,
-    NgSelectModule
+    NgSelectModule,
+    MatDatepickerModule
   ],
 })
 export class AuthModule {}
