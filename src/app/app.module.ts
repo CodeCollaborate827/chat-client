@@ -10,6 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptors/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { CoreModule } from './core';
     ReactiveFormsModule
   ],
   providers: [
-    { provide: DateAdapter, useClass: NativeDateAdapter }
+    { provide: DateAdapter, useClass: NativeDateAdapter },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

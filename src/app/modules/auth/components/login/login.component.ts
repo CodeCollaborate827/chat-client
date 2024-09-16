@@ -2,7 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
-import { UserLogin } from '../../models';
+import { LoginRequest } from '../../models';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import { UserLogin } from '../../models';
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm?: FormGroup;
   showPassword?: boolean = false;
-  loginData: UserLogin = {} as UserLogin;
+  loginData: LoginRequest = {} as LoginRequest;
 
   private readonly destroy$ = new Subject();
 
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   initializeForm() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
@@ -39,7 +39,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     } 
     this.prepareData();
-    this.authService.login(this.loginData).subscribe((res) => console.log(res))
+    console.log(this.loginData)
+    this.authService.login(this.loginForm?.value).subscribe((res) => console.log(res))
   }
 
   toggleVisibilityPassword() {

@@ -49,10 +49,12 @@
 
                 <mat-icon class="mr-3">gif</mat-icon>
                 <div class="conversation-input grow mr-3">
-                    <mat-form-field class="w-full">
-                        <input matInput [(ngModel)]="inputContent" type="text" placeholder="Aa">
-                        <mat-icon matSuffix>sentiment_satisfied_alt</mat-icon>
-                    </mat-form-field>
+                    <form>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input matInput [(ngModel)]="inputContent" type="text" placeholder="Aa">
+                            <mat-icon matSuffix>sentiment_satisfied_alt</mat-icon>
+                        </mat-form-field>
+                    </form>
                 </div>
                 <mat-icon (click)="sendMessage()">{{showSendButton ? 'send' : 'thumb_up'}}</mat-icon>
             </div>

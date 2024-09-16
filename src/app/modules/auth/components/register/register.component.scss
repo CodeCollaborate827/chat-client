@@ -1,17 +1,19 @@
 .register {
   &__container {
-    max-height: 70%;
-    min-height: 70%;
+    // max-height: 70%;
+    // min-height: 70%;
 
   }
 
   &__avatar {
-    width: 200px;
-    height: 200px;
+    width: 20rem;
+    height: 20rem;
+    margin-bottom: 10rem;
 
-    &__change-avatar {
-      right: 20px;
-      bottom: 40px
-    }
+  }
+  
+  &__change-avatar {
+    right: 20px;
+    bottom: 40px
   }
 }

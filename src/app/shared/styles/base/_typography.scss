@@ -1,6 +1,34 @@
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: $color-grey-dark-1;
+}
+
+.heading-primary {
+    font-size: 3rem;
+    font-weight: 700;
+    display: inline-block;
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: .2rem;
+    transition: all .2s;
+}
+
 .long-text {
     word-wrap: break-word; /* Break long words */
     overflow-wrap: break-word; /* Break long words */
     white-space: normal; /* Allow the text to wrap to new lines */
     word-break: break-word;
+}
+
+.link-text {
+    color: rgb(59, 130, 246);
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }

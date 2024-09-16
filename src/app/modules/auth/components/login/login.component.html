@@ -1,34 +1,34 @@
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
-  <div class="flex w-full" style="max-width: 112rem;">
+  <div class="flex w-full justify-center lg:px-20 rounded" style="min-width: 25rem; max-width: 112rem;">
     <!-- Form Container -->
-    <div class="bg-white p-8 rounded shadow-md w-1/2">
+    <div class="bg-white p-8 rounded shadow-md w-3/4 lg:w-1/2">
       <div class="w-1/6 mb-4">
-        <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center">IMaTalk</h1>
+        <h1 class="heading-primary">IMaTalk</h1>
       </div>
 
-      <h1 class="fs-18 font-bold mb-2">Welcome to Our Application</h1>
-
-      <h3 class="fs-14 mb-4">Please login to use the platform</h3>
+      <h1 class="text-2xl font-bold mb-8">IMaTalk helps you connect and share with the people in your life.</h1>
 
       <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="mb-1">
-          <mat-form-field appearance="outline">
-            <input matInput formControlName="username" placeholder="Username" class="w-full border rounded" trimWhiteSpace/>
-            <mat-error *ngIf="controlHasError('required', 'username')">
-              Please enter username
+          <mat-form-field appearance="outline" class="w-full">
+            <input matInput formControlName="email" placeholder="Email" class="w-full border rounded" trimWhiteSpace/>
+            <mat-error *ngIf="controlHasError('required', 'email')">
+              Please enter email
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="mb-1">
-          <mat-form-field appearance="outline">
-            <input matInput type="password" formControlName="password" placeholder="Password" class="border rounded" trimWhiteSpace/>
+        <div class="mb-1 w-full">
+          <mat-form-field appearance="outline" class="w-full"> 
+            <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password" class="border rounded" trimWhiteSpace/>
             <mat-icon matSuffix (click)="toggleVisibilityPassword()">{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
             <mat-error *ngIf="controlHasError('required', 'password')">
               Please enter password
             </mat-error>
           </mat-form-field>
         </div>
-        <button type="submit" class="w-full btn btn-primary p-2">Login</button>
+        <div class="flex justify-center">
+          <button type="submit" class="btn btn--primary">Login</button>
+        </div>
 
         <div class="flex items-center my-4">
           <hr class="flex-grow border-t border-gray-300">
@@ -36,24 +36,30 @@
           <hr class="flex-grow border-t border-gray-300">
         </div>
 
-        <button type="button" class="btn w-full bg-red-500 p-2 text-white mt-2 flex" (click)="loginWithGoogle()">
-          <img src="../../../../../assets/google.svg" alt="Google Icon" class="mdc-icon-button google-icon">
-          <span>Login with Google</span>
-        </button>
-        <button type="button" class="btn w-full bg-blue-600 p-2 text-white mt-2 flex" (click)="loginWithFacebook()">
-          <mat-icon class="mr-2 mat-mdc-icon-button">facebook</mat-icon>
-          <span>Login with Facebook</span>
-        </button>
+        <div class="flex flex-col items-center gap-2">
+          <button type="button" class="btn btn--google bg-red-500 flex" (click)="loginWithGoogle()">
+            <img src="../../../../../assets/google.svg" alt="Google Icon" class="mdc-icon-button google-icon">
+            <span class="hidden sm:inline-block">Login with Google</span>
+            <span class="sm:hidden">Google</span>
+          </button>
+          <button type="button" class="btn btn--facebook bg-blue-600 flex" (click)="loginWithFacebook()">
+            <mat-icon class="mr-2 mat-mdc-icon-button">facebook</mat-icon>
+            <span class="hidden sm:inline-block">Login with Facebook</span>
+            <span class="sm:hidden">Facebook</span>
+          </button>
+        </div>
       </form>
 
-      <div class="mt-4">
-        <a routerLink="/auth/register" class="text-blue-500">Don't have an account? Register now!</a>
+      <div class="flex justify-center mt-4">
+        Don't have an account? 
+        <a routerLink="/auth/register" class="ml-2 link-text">
+          Register now!</a>
       </div>
 
       <h4 class="text-sm mt-4">imatalk&#64;message.com</h4>
     </div>
     <!-- Image Container -->
-    <div class="w-1/2">
+    <div class="lg:block hidden w-1/2 shadow-md rounded">
       <img src="../../assets/login-img.jpg" alt="Descriptive Alt Text" class="object-cover h-full w-full rounded-r">
     </div>
   </div>

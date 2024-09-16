@@ -4,8 +4,21 @@
 
 $color-primary: var(--primary-color);
 $color-hover-primary: var(--primary-hover-color);
+$color-primary-light: var(--primary-color-light);
+$color-primary-dark: var(--primary-color-dark);
+
 $color-secondary: var(--secondary-color);
 $color-danger: var(--danger-color);
 $color-background: var(--background-color);
 $color-text: var(--text-color);
 $color-card: var(--card-color);
+
+$color-white: #fff;
+$color-black: #000;
+$color-grey-light-1: #f7f7f7;
+$color-grey-light-2: #eee;
+$color-grey-dark-1: #777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+
+$box-shadow: 0 1rem 2rem rgba($color-black, .2);

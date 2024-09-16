@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { confirmPasswordValidator, passwordValidator } from 'src/app/shared/validators/password.validator';
 import { vietnamCities } from "../../../../shared/helpers/masterData"
-import { UserRegister } from '../../models';
+import { RegisterRequest } from '../../models';
 import { User } from 'src/app/shared';
 
 @Component({
@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   registerStep3Form: FormGroup = new FormGroup({});
   showPassword?: boolean = false;
   showConfirmPassword?: boolean = false;
-  registerData: UserRegister = {} as UserRegister;
+  registerData: RegisterRequest = {} as RegisterRequest;
   cities = vietnamCities;
 
   private readonly destroy$ = new Subject();

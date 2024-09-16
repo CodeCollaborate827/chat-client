@@ -53,7 +53,7 @@
                     [class.last-message]="messageOrder == 'last'"
                     [class.single-message]="messageOrder == 'single'"
                     [matTooltip]="message.sentAt"
-                    [matTooltipPosition]="message.own ? 'left' : 'right'"
+                    matTooltipPosition="below"
                 >
                     <span *ngIf="message.content">
                         {{ message.content }}
@@ -184,7 +184,7 @@
                     [class.last-message]="messageOrder == 'last'"
                     [class.single-message]="messageOrder == 'single'"
                     [matTooltip]="message.sentAt"
-                    [matTooltipPosition]="message.own ? 'left' : 'right'"
+                    matTooltipPosition="below"
                 >
                     <div class="attachment-icon flex items-center">
                         <mat-icon class="mr-3">insert_drive_file</mat-icon>
