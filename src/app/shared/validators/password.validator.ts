@@ -27,7 +27,7 @@ export function passwordValidator(control: AbstractControl): ValidationErrors | 
 }
 
 export function confirmPasswordValidator(control: AbstractControl): ValidationErrors | null {
-    const password = control.parent?.get('password')?.value as string;
+    const password = control.parent?.get('password')?.value as string ?? control.parent?.get('newPassword')?.value as string;
     const confirmPassword = control.value;
 
     if (password !== confirmPassword) {

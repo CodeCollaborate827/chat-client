@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services';
 import { LoginRequest } from '../../models';
 
 @Component({

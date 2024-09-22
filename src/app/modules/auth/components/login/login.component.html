@@ -1,66 +1,104 @@
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
-  <div class="flex w-full justify-center lg:px-20 rounded" style="min-width: 25rem; max-width: 112rem;">
+  <div
+    class="flex w-full justify-center lg:px-20 rounded"
+    style="min-width: 25rem; max-width: 112rem; height: 60rem"
+  >
     <!-- Form Container -->
-    <div class="bg-white p-8 rounded shadow-md w-3/4 lg:w-1/2">
-      <div class="w-1/6 mb-4">
-        <h1 class="heading-primary">IMaTalk</h1>
+    <div class="flex flex-col justify-between p-8 bg-white rounded shadow-md w-3/4 lg:w-1/2">
+      <div class="top">
+        <div class="w-1/6 mb-4">
+          <h1 class="heading-primary">IMaTalk</h1>
+        </div>
+        <h1 class="text-3xl font-bold mb-8">
+          IMaTalk helps you connect and share with the people in your life.
+        </h1>
+
+        <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="mb-1">
+            <mat-form-field appearance="outline" class="w-full">
+              <input
+                matInput
+                formControlName="email"
+                placeholder="Email"
+                class="w-full border rounded"
+                trimWhiteSpace
+              />
+              <mat-error *ngIf="controlHasError('required', 'email')">
+                Please enter email
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="mb-1 w-full">
+            <mat-form-field appearance="outline" class="w-full">
+              <input
+                matInput
+                [type]="showPassword ? 'text' : 'password'"
+                formControlName="password"
+                placeholder="Password"
+                class="border rounded"
+                trimWhiteSpace
+              />
+              <mat-icon matSuffix (click)="toggleVisibilityPassword()">{{
+                showPassword ? "visibility_off" : "visibility"
+              }}</mat-icon>
+              <mat-error *ngIf="controlHasError('required', 'password')">
+                Please enter password
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="flex justify-center">
+            <button type="submit" class="btn btn--primary">Login</button>
+          </div>
+
+          <div class="flex items-center my-4">
+            <hr class="flex-grow border-t border-gray-300" />
+            <span class="mx-2 fs-14 faded-text">or</span>
+            <hr class="flex-grow border-t border-gray-300" />
+          </div>
+
+          <div class="flex flex-col items-center gap-2">
+            <button
+              type="button"
+              class="btn btn--google bg-red-500 flex"
+              (click)="loginWithGoogle()"
+            >
+              <img
+                src="../../../../../assets/google.svg"
+                alt="Google Icon"
+                class="mdc-icon-button google-icon"
+              />
+              <span class="hidden sm:inline-block">Login with Google</span>
+              <span class="sm:hidden">Google</span>
+            </button>
+            <button
+              type="button"
+              class="btn btn--facebook bg-blue-600 flex"
+              (click)="loginWithFacebook()"
+            >
+              <mat-icon class="mr-2 mat-mdc-icon-button">facebook</mat-icon>
+              <span class="hidden sm:inline-block">Login with Facebook</span>
+              <span class="sm:hidden">Facebook</span>
+            </button>
+            <a routerLink="/auth/forgot-password" class="link-text text-center mt-5">Forgotten password?</a>
+          </div>
+        </form>
       </div>
-
-      <h1 class="text-2xl font-bold mb-8">IMaTalk helps you connect and share with the people in your life.</h1>
-
-      <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="mb-1">
-          <mat-form-field appearance="outline" class="w-full">
-            <input matInput formControlName="email" placeholder="Email" class="w-full border rounded" trimWhiteSpace/>
-            <mat-error *ngIf="controlHasError('required', 'email')">
-              Please enter email
-            </mat-error>
-          </mat-form-field>
+      <div class="bottom">
+        <div class="flex justify-center mt-4">
+          Don't have an account?
+          <a routerLink="/auth/register" class="ml-2 link-text">
+            Register now!</a
+          >
         </div>
-        <div class="mb-1 w-full">
-          <mat-form-field appearance="outline" class="w-full"> 
-            <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password" class="border rounded" trimWhiteSpace/>
-            <mat-icon matSuffix (click)="toggleVisibilityPassword()">{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-            <mat-error *ngIf="controlHasError('required', 'password')">
-              Please enter password
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="flex justify-center">
-          <button type="submit" class="btn btn--primary">Login</button>
-        </div>
-
-        <div class="flex items-center my-4">
-          <hr class="flex-grow border-t border-gray-300">
-          <span class="mx-2 fs-14 faded-text">or</span>
-          <hr class="flex-grow border-t border-gray-300">
-        </div>
-
-        <div class="flex flex-col items-center gap-2">
-          <button type="button" class="btn btn--google bg-red-500 flex" (click)="loginWithGoogle()">
-            <img src="../../../../../assets/google.svg" alt="Google Icon" class="mdc-icon-button google-icon">
-            <span class="hidden sm:inline-block">Login with Google</span>
-            <span class="sm:hidden">Google</span>
-          </button>
-          <button type="button" class="btn btn--facebook bg-blue-600 flex" (click)="loginWithFacebook()">
-            <mat-icon class="mr-2 mat-mdc-icon-button">facebook</mat-icon>
-            <span class="hidden sm:inline-block">Login with Facebook</span>
-            <span class="sm:hidden">Facebook</span>
-          </button>
-        </div>
-      </form>
-
-      <div class="flex justify-center mt-4">
-        Don't have an account? 
-        <a routerLink="/auth/register" class="ml-2 link-text">
-          Register now!</a>
       </div>
-
-      <h4 class="text-sm mt-4">imatalk&#64;message.com</h4>
     </div>
     <!-- Image Container -->
     <div class="lg:block hidden w-1/2 shadow-md rounded">
-      <img src="../../assets/login-img.jpg" alt="Descriptive Alt Text" class="object-cover h-full w-full rounded-r">
+      <img
+        src="../../assets/login-img.jpg"
+        alt="Descriptive Alt Text"
+        class="object-cover h-full w-full rounded-r"
+      />
     </div>
   </div>
 </div>

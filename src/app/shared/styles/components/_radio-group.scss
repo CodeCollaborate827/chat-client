@@ -1,0 +1,17 @@
+.mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle  {
+    border-color: $color-primary !important;
+}
+
+.mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle {
+    border-color: $color-primary !important;
+}
+
+.mat-mdc-radio-button.mat-accent {
+    --mdc-radio-selected-focus-icon-color: $color-primary !important;
+    --mdc-radio-selected-hover-icon-color: $color-primary !important;
+    --mdc-radio-selected-icon-color: $color-primary !important;
+    --mdc-radio-selected-pressed-icon-color: $color-primary !important;
+    --mat-radio-checked-ripple-color: $color-primary !important;
+    --mat-option-selected-state-label-text-color: $color-primary !important;
+    
+}

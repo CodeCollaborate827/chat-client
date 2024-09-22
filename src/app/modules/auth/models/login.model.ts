@@ -1,4 +1,4 @@
-import { APIResponse } from "src/app/shared/models/api-response.model";
+import { APIResponse } from "src/app/shared/models";
 
 export interface LoginRequest {
   email?: string;

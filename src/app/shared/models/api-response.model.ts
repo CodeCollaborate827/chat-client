@@ -3,3 +3,8 @@ export interface APIResponse<T> {
     message?: string,
     data?: T
 }
+
+export interface NoDataAPIResponse {
+    errorCode?: string,
+    message?: string,
+}

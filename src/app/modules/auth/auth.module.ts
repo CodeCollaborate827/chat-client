@@ -4,7 +4,7 @@ import { CommonModule } from "@angular/common";
 import { AuthRoutingModule } from "./auth-routing.module";
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FpasswordComponent } from "./components/fpassword/fpassword.component";
 import { MatIconModule } from "@angular/material/icon";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -16,6 +16,7 @@ import { ToastrModule } from "ngx-toastr";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatSelectModule } from "@angular/material/select";
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { MatSelectModule } from "@angular/material/select";
     ToastrModule,
     MatStepperModule,
     NgSelectModule,
-    MatDatepickerModule
+    MatRadioModule,
+    MatDatepickerModule,
+    FormsModule
   ],
 })
 export class AuthModule {}

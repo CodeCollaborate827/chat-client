@@ -19,7 +19,7 @@ const routes: Routes = [
         component: RegisterComponent
       },
       {
-        path: 'fpassword',
+        path: 'forgot-password',
         component: FpasswordComponent
       },
     ]

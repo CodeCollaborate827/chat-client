@@ -51,6 +51,7 @@ $Chat-theme: mat.define-light-theme((
 @import "./app/shared/styles/components/input";
 @import "./app/shared/styles/components/tooltip";
 @import "./app/shared/styles/components/stepper";
+@import "./app/shared/styles/components/radio-group";
 
 html {
   font-size: 62.5%;
